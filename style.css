@@ -516,12 +516,18 @@ body {
 
 .player-turn-tag {
     font-family: var(--font-heading);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: white;
     background: var(--primary-color);
-    padding: 2px 10px;
+    padding: 3px 14px;
     border-radius: 20px;
     font-weight: 700;
+    animation: pulseTurn 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseTurn {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 /* COMBO BANNER */
@@ -622,6 +628,7 @@ body {
 .card-front {
     background: #ffffff;
     transform: rotateY(180deg);
+    flex-direction: column;
 }
 
 .card-front img {
@@ -630,14 +637,29 @@ body {
     object-fit: cover;
 }
 
-.card-front-emoji {
-    font-size: clamp(2rem, 5vw, 3.8rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+/* THEME SPECIFIC CARD FRONTS (WILD & SEA) */
+.card-front-wild {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    border: 3px solid #ffeaa7;
+}
+
+.card-front-sea {
+    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+    border: 3px solid #74b9ff;
+}
+
+.card-emoji-icon {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.card-emoji-label {
+    font-family: var(--font-heading);
+    font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    font-weight: 700;
+    margin-top: 2px;
 }
 
 .card.matched .card-front {
@@ -652,7 +674,7 @@ body {
     100% { transform: rotateY(180deg) scale(1); }
 }
 
-/* ===================== COMPACT MODALS (SHOP & ALBUM) ===================== */
+/* ===================== GIFT BOX / STICKER CARD MODALS ===================== */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -691,11 +713,7 @@ body {
 }
 
 .shop-modal-card, .album-modal-card {
-    max-width: 620px;
-}
-
-.modal-overlay.active .modal-card {
-    transform: scale(1);
+    max-width: 660px;
 }
 
 .modal-header-row {
@@ -763,33 +781,57 @@ body {
     max-height: 60vh;
 }
 
+/* GIFT & STICKER CARD STYLE */
 .shop-item, .album-item {
-    background: #f8f9fa;
-    border: 2px solid #e0e0e0;
-    border-radius: 14px;
-    padding: 10px;
+    background: linear-gradient(135deg, #ffffff 0%, #fff9e6 100%);
+    border: 3px solid #feca57;
+    border-radius: 18px;
+    padding: 12px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    box-shadow: 0 6px 14px rgba(254, 202, 87, 0.25);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-item:hover, .album-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(254, 202, 87, 0.4);
+}
+
+.gift-badge {
+    position: absolute;
+    top: -8px;
+    right: 8px;
+    background: #ff5252;
+    color: white;
+    font-size: 0.65rem;
+    font-family: var(--font-heading);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
 }
 
 .shop-item-icon {
-    font-size: 2rem;
+    font-size: 2.4rem;
     margin-bottom: 4px;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
 }
 
 .shop-item-name {
     font-family: var(--font-heading);
     font-size: 0.9rem;
+    color: var(--text-dark);
     margin-bottom: 2px;
 }
 
 .shop-item-price {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--accent-yellow);
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 /* CONFETTI CANVAS */

@@ -52,7 +52,7 @@
 
         <!-- SEVİYE HARİTASI EKRANI (LEVEL MAP) -->
         <main id="level-map-view" class="level-map-view">
-            <!-- SANAL PATİ DOSTU BÖLÜMÜ (Flex Layout Inside Box) -->
+            <!-- SANAL PATİ DOSTU BÖLÜMÜ -->
             <div class="virtual-pet-container" id="virtual-pet-container">
                 <div class="pet-avatar-wrapper" id="pet-avatar-btn" title="Doğrudan Sevmek İçin Tıkla!">
                     <span class="pet-hat" id="pet-hat-display">👑</span>
@@ -72,7 +72,7 @@
                     <span class="control-label">👥 Mod:</span>
                     <div class="pill-selector" id="mode-selector">
                         <button class="pill-btn active" data-mode="1p">Tek Kişilik 👤</button>
-                        <button class="pill-btn" data-mode="2p">2 Kişilik (Sırayla) 👥</button>
+                        <button class="pill-btn" data-mode="2p">2 Kişilik (Hamleli) 👥</button>
                     </div>
                 </div>
 
@@ -110,7 +110,7 @@
                 <div class="header-center">
                     <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
                     <div id="player-turn-indicator" class="player-turn-tag" style="display: none;">
-                        1. Oyuncu Oynuyor 👤
+                        1. Oyuncunun Sırası 👤
                     </div>
                 </div>
 
@@ -176,30 +176,14 @@
         </div>
     </div>
 
-    <!-- 2. OYUNCU GEÇİŞ MODALI -->
-    <div id="p2-turn-modal" class="modal-overlay">
-        <div class="modal-card">
-            <h2 class="modal-title" style="color:var(--accent-purple);">1. Oyuncu Tamamladı! 🎯</h2>
-            <p style="font-size: 1.1rem; color: #2f3542; margin: 12px 0;">
-                Skor: <strong id="p1-summary-stats">8 Hamle - 00:15 Süre</strong>
-            </p>
-            <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 20px;">
-                Şimdi Sıra 2. Oyuncuda! 👤
-            </div>
-            <button id="btn-start-p2" class="btn btn-primary" style="width:100%; font-size:1.1rem; padding:12px;">
-                2. Oyuncu Başlasın ▶
-            </button>
-        </div>
-    </div>
-
     <!-- PATİ MAĞAZASI MODALI (PET SHOP & CARDS SHOP) -->
     <div id="shop-modal" class="modal-overlay">
         <div class="modal-card shop-modal-card">
             <div class="modal-header-row">
-                <h2>🛍️ Pati Mağazası</h2>
+                <h2>🎁 Pati Mağazası & Hediyeler</h2>
                 <button id="btn-close-shop" class="btn-close">✖</button>
             </div>
-            <p class="modal-subtitle">Topladığın yıldızlarla sevimli aksesuarlar ve kart arkalıkları al!</p>
+            <p class="modal-subtitle">Topladığın yıldızlarla sürpriz hediyeler ve kart desenleri aç!</p>
 
             <div class="shop-tabs">
                 <button class="shop-tab active" data-tab="hats">👒 Aksesuarlar</button>
@@ -219,7 +203,7 @@
                 <h2>📖 Koleksiyon Albümü</h2>
                 <button id="btn-close-album" class="btn-close">✖</button>
             </div>
-            <p class="modal-subtitle">Bölümleri geçtikçe açılan sevimli dost kartvizitleri!</p>
+            <p class="modal-subtitle">Bölümleri geçtikçe açılan sevimli hediye kartvizitleri!</p>
 
             <div class="album-grid" id="album-grid">
                 <!-- Javascript ile Çıkartmalar -->
