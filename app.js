@@ -475,16 +475,18 @@ class MemoryGame {
                 frontHTML = `<img src="${cardObj.src}" alt="${cardObj.name}" />`;
             } else if (currentThemeKey === 'wild') {
                 frontHTML = `
-                    <div class="card-front-emoji card-front-wild">
-                        <span class="card-emoji-icon">${cardObj.emoji}</span>
-                        <span class="card-emoji-label">${cardObj.name}</span>
+                    <div class="card-front-illustrated card-front-wild">
+                        <span class="card-character-badge">🌴 Orman</span>
+                        <span class="card-character-avatar">${cardObj.emoji}</span>
+                        <div class="card-character-ribbon">${cardObj.name}</div>
                     </div>
                 `;
             } else if (currentThemeKey === 'sea') {
                 frontHTML = `
-                    <div class="card-front-emoji card-front-sea">
-                        <span class="card-emoji-icon">${cardObj.emoji}</span>
-                        <span class="card-emoji-label">${cardObj.name}</span>
+                    <div class="card-front-illustrated card-front-sea">
+                        <span class="card-character-badge">🌊 Deniz</span>
+                        <span class="card-character-avatar">${cardObj.emoji}</span>
+                        <div class="card-character-ribbon">${cardObj.name}</div>
                     </div>
                 `;
             }

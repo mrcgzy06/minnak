@@ -672,15 +672,76 @@ body {
     object-fit: cover;
 }
 
-/* THEME SPECIFIC CARD FRONTS (WILD & SEA) */
+/* THEME SPECIFIC ILLUSTRATED CARD FRONTS (WILD & SEA) */
+.card-front-illustrated {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 6px;
+    border-radius: var(--radius-card);
+    position: relative;
+    overflow: hidden;
+}
+
 .card-front-wild {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    border: 3px solid #ffeaa7;
+    background: radial-gradient(circle at 50% 35%, #fffde7 0%, #a8e6cf 50%, #56ab2f 100%);
+    border: 3.5px solid #ffeaa7;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.7);
 }
 
 .card-front-sea {
-    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
-    border: 3px solid #74b9ff;
+    background: radial-gradient(circle at 50% 35%, #e0f7fa 0%, #81d4fa 50%, #0288d1 100%);
+    border: 3.5px solid #b2ebf2;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+.card-character-badge {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    font-size: clamp(0.6rem, 1vw, 0.75rem);
+    font-family: var(--font-heading);
+    padding: 1px 6px;
+    border-radius: 10px;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.card-character-avatar {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.22));
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+
+.card:hover .card-character-avatar {
+    transform: scale(1.15) rotate(4deg);
+}
+
+.card-character-ribbon {
+    width: 96%;
+    background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+    color: white;
+    font-family: var(--font-heading);
+    font-size: clamp(0.65rem, 1.1vw, 0.85rem);
+    font-weight: 700;
+    text-align: center;
+    padding: 3px 6px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-front-sea .card-character-ribbon {
+    background: linear-gradient(135deg, #0984e3 0%, #6c5ce7 100%);
 }
 
 .card-emoji-icon {
