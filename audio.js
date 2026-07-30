@@ -214,6 +214,36 @@ class SoundManager {
         osc.stop(this.ctx.currentTime + 0.05);
     }
 
+    // Welcome Greeting Audio Synth
+    playWelcome() {
+        if (this.muted || !this.ctx) return;
+        this.ensureContext();
+
+        const notes = [
+            { f: 440, d: 0.1, delay: 0 },
+            { f: 554.37, d: 0.1, delay: 0.1 },
+            { f: 659.25, d: 0.15, delay: 0.2 },
+            { f: 880, d: 0.3, delay: 0.35 }
+        ];
+
+        notes.forEach(n => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(n.f, this.ctx.currentTime + n.delay);
+
+            gain.gain.setValueAtTime(0.3, this.ctx.currentTime + n.delay);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + n.delay + n.d);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            osc.start(this.ctx.currentTime + n.delay);
+            osc.stop(this.ctx.currentTime + n.delay + n.d);
+        });
+    }
+
     // Click Sound
     playClick() {
         if (this.muted || !this.ctx) return;

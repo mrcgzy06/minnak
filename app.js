@@ -1,12 +1,45 @@
-// Sevimli Pati Hafıza Oyunu - Ana Mantık & Modüller
+// Sevimli Pati Hafıza Oyunu - Ana Mantık & Modüller (30 Bölüm & Otomatik Temalar)
 
+// 30 Bölüm Yapısı:
+// Bölüm 1 - 10: Evcil Dostlar 🐱🐶
+// Bölüm 11 - 20: Vahşi Orman 🦁🐘
+// Bölüm 21 - 30: Deniz Altı 🐬🐙
 const LEVELS = [
-    { id: 1, title: 'Bölüm 1: Minik Patiler', rows: 2, cols: 2, pairs: 2, star3Moves: 5, star2Moves: 8 },
-    { id: 2, title: 'Bölüm 2: Sevimli Dostlar', rows: 2, cols: 3, pairs: 3, star3Moves: 8, star2Moves: 12 },
-    { id: 3, title: 'Bölüm 3: Neşeli Kulübe', rows: 3, cols: 4, pairs: 6, star3Moves: 14, star2Moves: 20 },
-    { id: 4, title: 'Bölüm 4: Zeki Dedektifler', rows: 4, cols: 4, pairs: 8, star3Moves: 18, star2Moves: 26 },
-    { id: 5, title: 'Bölüm 5: Süper Kahramanlar', rows: 4, cols: 5, pairs: 10, star3Moves: 24, star2Moves: 34 },
-    { id: 6, title: 'Bölüm 6: Pati Şampiyonu', rows: 4, cols: 6, pairs: 12, star3Moves: 30, star2Moves: 42 }
+    // Evcil Dostlar (Bölüm 1 - 10)
+    { id: 1, title: 'Bölüm 1: Minik Patiler', theme: 'pets', pairs: 2, star3Moves: 5, star2Moves: 8 },
+    { id: 2, title: 'Bölüm 2: Sevimli Dostlar', theme: 'pets', pairs: 3, star3Moves: 8, star2Moves: 12 },
+    { id: 3, title: 'Bölüm 3: Neşeli Kulübe', theme: 'pets', pairs: 4, star3Moves: 10, star2Moves: 15 },
+    { id: 4, title: 'Bölüm 4: Zeki Dedektifler', theme: 'pets', pairs: 6, star3Moves: 14, star2Moves: 20 },
+    { id: 5, title: 'Bölüm 5: Süper Kahramanlar', theme: 'pets', pairs: 6, star3Moves: 14, star2Moves: 20 },
+    { id: 6, title: 'Bölüm 6: Pati Şampiyonu', theme: 'pets', pairs: 8, star3Moves: 18, star2Moves: 26 },
+    { id: 7, title: 'Bölüm 7: Tatlı Yuvamız', theme: 'pets', pairs: 8, star3Moves: 18, star2Moves: 26 },
+    { id: 8, title: 'Bölüm 8: Oyun Parkı', theme: 'pets', pairs: 10, star3Moves: 24, star2Moves: 34 },
+    { id: 9, title: 'Bölüm 9: Yıldızlı Gece', theme: 'pets', pairs: 10, star3Moves: 24, star2Moves: 34 },
+    { id: 10, title: 'Bölüm 10: Evcil Şampiyon', theme: 'pets', pairs: 12, star3Moves: 30, star2Moves: 42 },
+
+    // Vahşi Orman (Bölüm 11 - 20)
+    { id: 11, title: 'Bölüm 11: Safari Başlangıcı', theme: 'wild', pairs: 3, star3Moves: 8, star2Moves: 12 },
+    { id: 12, title: 'Bölüm 12: Orman Yolu', theme: 'wild', pairs: 4, star3Moves: 10, star2Moves: 15 },
+    { id: 13, title: 'Bölüm 13: Maymun Ağacı', theme: 'wild', pairs: 6, star3Moves: 14, star2Moves: 20 },
+    { id: 14, title: 'Bölüm 14: Fil Krallığı', theme: 'wild', pairs: 6, star3Moves: 14, star2Moves: 20 },
+    { id: 15, title: 'Bölüm 15: Aslan Yuvası', theme: 'wild', pairs: 8, star3Moves: 18, star2Moves: 26 },
+    { id: 16, title: 'Bölüm 16: Zürafa Tepesi', theme: 'wild', pairs: 8, star3Moves: 18, star2Moves: 26 },
+    { id: 17, title: 'Bölüm 17: Panda Bahçesi', theme: 'wild', pairs: 10, star3Moves: 24, star2Moves: 34 },
+    { id: 18, title: 'Bölüm 18: Vahşi Vadi', theme: 'wild', pairs: 10, star3Moves: 24, star2Moves: 34 },
+    { id: 19, title: 'Bölüm 19: Ormanın Sesi', theme: 'wild', pairs: 12, star3Moves: 30, star2Moves: 42 },
+    { id: 20, title: 'Bölüm 20: Orman Kralı', theme: 'wild', pairs: 12, star3Moves: 30, star2Moves: 42 },
+
+    // Deniz Altı (Bölüm 21 - 30)
+    { id: 21, title: 'Bölüm 21: Mavi Dalgalar', theme: 'sea', pairs: 3, star3Moves: 8, star2Moves: 12 },
+    { id: 22, title: 'Bölüm 22: Mercan Kayalığı', theme: 'sea', pairs: 4, star3Moves: 10, star2Moves: 15 },
+    { id: 23, title: 'Bölüm 23: Yunus Dansı', theme: 'sea', pairs: 6, star3Moves: 14, star2Moves: 20 },
+    { id: 24, title: 'Bölüm 24: Ahtapot Evi', theme: 'sea', pairs: 6, star3Moves: 14, star2Moves: 20 },
+    { id: 25, title: 'Bölüm 25: Deniz Yıldızı', theme: 'sea', pairs: 8, star3Moves: 18, star2Moves: 26 },
+    { id: 26, title: 'Bölüm 26: Istakoz Limanı', theme: 'sea', pairs: 8, star3Moves: 18, star2Moves: 26 },
+    { id: 27, title: 'Bölüm 27: İnci İstiridye', theme: 'sea', pairs: 10, star3Moves: 24, star2Moves: 34 },
+    { id: 28, title: 'Bölüm 28: Balına Körfezi', theme: 'sea', pairs: 10, star3Moves: 24, star2Moves: 34 },
+    { id: 29, title: 'Bölüm 29: Okyanus Derinliği', theme: 'sea', pairs: 12, star3Moves: 30, star2Moves: 42 },
+    { id: 30, title: 'Bölüm 30: Okyanus Şampiyonu', theme: 'sea', pairs: 12, star3Moves: 30, star2Moves: 42 }
 ];
 
 const CARD_THEMES = {
@@ -79,7 +112,6 @@ class MemoryGame {
 
         // State variables
         this.gameMode = '1p'; // '1p' or '2p'
-        this.selectedTheme = 'pets'; // 'pets', 'wild', 'sea'
         this.moves = 0;
         this.matchedPairs = 0;
         this.timerSeconds = 0;
@@ -103,6 +135,11 @@ class MemoryGame {
         this.bindEvents();
         this.updateVirtualPet();
         this.renderLevelMap();
+        
+        // Welcome audio greeting
+        setTimeout(() => {
+            if (window.soundManager) window.soundManager.playWelcome();
+        }, 600);
     }
 
     initDOMElements() {
@@ -125,9 +162,8 @@ class MemoryGame {
         this.petHatDisplay = document.getElementById('pet-hat-display');
         this.petSpeech = document.getElementById('pet-speech');
         
-        // Mode & Theme
+        // Mode Selector
         this.modeSelector = document.getElementById('mode-selector');
-        this.themeSelector = document.getElementById('theme-selector');
         this.playerTurnTag = document.getElementById('player-turn-indicator');
         this.comboBanner = document.getElementById('combo-banner');
         this.btnHint = document.getElementById('btn-hint');
@@ -193,34 +229,25 @@ class MemoryGame {
         // Virtual Pet Interaction
         this.petAvatarBtn.addEventListener('click', () => {
             window.soundManager.playPurr();
-            this.petAvatarBtn.style.transform = 'scale(1.25) rotate(12deg)';
+            this.petAvatarBtn.style.transform = 'scale(1.3) rotate(12deg)';
             setTimeout(() => { this.petAvatarBtn.style.transform = ''; }, 300);
             
             const messages = [
-                'Miyav! Seni çok seviyorum! 🐱',
+                'Miyav! Hoş geldin! Birlikte oynayalım mı? 🐱',
                 'Birlikte harikayız! ⭐',
-                'Harika oynuyorsun, devam et! 🚀',
+                'Bölümleri tamamla, yıldızları topla! 🚀',
                 'Mağazadan bana yeni bir şapka alalım mı? 🎩'
             ];
             this.petSpeech.textContent = messages[Math.floor(Math.random() * messages.length)];
         });
 
-        // Mode & Theme Selector
+        // Mode Selector
         this.modeSelector.querySelectorAll('.pill-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 window.soundManager.playClick();
                 this.modeSelector.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 this.gameMode = btn.dataset.mode;
-            });
-        });
-
-        this.themeSelector.querySelectorAll('.pill-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                window.soundManager.playClick();
-                this.themeSelector.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                this.selectedTheme = btn.dataset.theme;
             });
         });
 
@@ -292,9 +319,13 @@ class MemoryGame {
             const card = document.createElement('div');
             card.className = `level-card ${isUnlocked ? 'unlocked' : 'locked'}`;
             
+            let themeIcon = '🐱';
+            if (lvl.theme === 'wild') themeIcon = '🦁';
+            else if (lvl.theme === 'sea') themeIcon = '🐬';
+
             card.innerHTML = `
                 ${!isUnlocked ? '<div class="lock-badge">🔒</div>' : ''}
-                <div class="level-number">Bölüm ${lvl.id}</div>
+                <div class="level-number">${themeIcon} Bölüm ${lvl.id}</div>
                 <div class="level-title">${lvl.title.split(': ')[1]}</div>
                 <div class="level-grid-info">${lvl.pairs * 2} Kart (${lvl.pairs} Çift)</div>
                 <div class="stars-display">
@@ -345,6 +376,7 @@ class MemoryGame {
             else if (totalCards === 20) { cols = 5; rows = 4; }
             else if (totalCards === 16) { cols = 4; rows = 4; }
             else if (totalCards === 12) { cols = 4; rows = 3; }
+            else if (totalCards === 8)   { cols = 4; rows = 2; }
             else if (totalCards === 6)  { cols = 3; rows = 2; }
             else if (totalCards === 4)  { cols = 2; rows = 2; }
         } else {
@@ -352,6 +384,7 @@ class MemoryGame {
             else if (totalCards === 20) { cols = 4; rows = 5; }
             else if (totalCards === 16) { cols = 4; rows = 4; }
             else if (totalCards === 12) { cols = 3; rows = 4; }
+            else if (totalCards === 8)   { cols = 2; rows = 4; }
             else if (totalCards === 6)  { cols = 2; rows = 3; }
             else if (totalCards === 4)  { cols = 2; rows = 2; }
         }
@@ -400,7 +433,7 @@ class MemoryGame {
 
         if (this.gameMode === '2p') {
             this.playerTurnTag.style.display = 'inline-block';
-            this.playerTurnTag.textContent = 'Sıra: 1. Oyuncu 👤 (P1: 0 - P2: 0)';
+            this.playerTurnTag.innerHTML = `Sıra: <strong style="font-size:1.1rem; color:#ffe66d;">${this.currentPlayer}. OYUNCU 👤</strong> (P1: 0 - P2: 0)`;
         } else {
             this.playerTurnTag.style.display = 'none';
         }
@@ -418,7 +451,8 @@ class MemoryGame {
     renderCards(levelConfig) {
         this.cardsGrid.innerHTML = '';
         
-        const cardPool = CARD_THEMES[this.selectedTheme] || CARD_THEMES.pets;
+        const currentThemeKey = levelConfig.theme || 'pets';
+        const cardPool = CARD_THEMES[currentThemeKey] || CARD_THEMES.pets;
         const selectedCards = cardPool.slice(0, levelConfig.pairs);
         const cardDeck = [...selectedCards, ...selectedCards];
         
@@ -436,14 +470,14 @@ class MemoryGame {
             let frontHTML = '';
             if (cardObj.src) {
                 frontHTML = `<img src="${cardObj.src}" alt="${cardObj.name}" />`;
-            } else if (this.selectedTheme === 'wild') {
+            } else if (currentThemeKey === 'wild') {
                 frontHTML = `
                     <div class="card-front-emoji card-front-wild">
                         <span class="card-emoji-icon">${cardObj.emoji}</span>
                         <span class="card-emoji-label">${cardObj.name}</span>
                     </div>
                 `;
-            } else if (this.selectedTheme === 'sea') {
+            } else if (currentThemeKey === 'sea') {
                 frontHTML = `
                     <div class="card-front-emoji card-front-sea">
                         <span class="card-emoji-icon">${cardObj.emoji}</span>
@@ -520,8 +554,7 @@ class MemoryGame {
                 if (this.gameMode === '2p') {
                     if (this.currentPlayer === 1) this.p1Score++;
                     else this.p2Score++;
-                    this.playerTurnTag.textContent = `${this.currentPlayer}. Oyuncunun Sırası 👤 (P1: ${this.p1Score} - P2: ${this.p2Score})`;
-                    // Matching player keeps their turn!
+                    this.playerTurnTag.innerHTML = `Sıra: <strong style="font-size:1.1rem; color:#ffe66d;">${this.currentPlayer}. OYUNCU 👤</strong> (P1: ${this.p1Score} - P2: ${this.p2Score})`;
                 }
 
                 const levelConfig = LEVELS.find(l => l.id === this.currentLevel);
@@ -542,7 +575,7 @@ class MemoryGame {
                 // Turn switches on mismatch!
                 if (this.gameMode === '2p') {
                     this.currentPlayer = this.currentPlayer === 1 ? 2 : 1;
-                    this.playerTurnTag.textContent = `${this.currentPlayer}. Oyuncunun Sırası 👤 (P1: ${this.p1Score} - P2: ${this.p2Score})`;
+                    this.playerTurnTag.innerHTML = `Sıra: <strong style="font-size:1.1rem; color:#ffe66d;">${this.currentPlayer}. OYUNCU 👤</strong> (P1: ${this.p1Score} - P2: ${this.p2Score})`;
                 }
             }, 900);
         }
@@ -627,11 +660,11 @@ class MemoryGame {
         if (this.gameMode === '2p') {
             let winnerText = '';
             if (this.p1Score > this.p2Score) {
-                winnerText = '🏆 1. Oyuncu Kazandı!';
+                winnerText = '🏆 1. OYUNCU KAZANDI!';
             } else if (this.p2Score > this.p1Score) {
-                winnerText = '🏆 2. Oyuncu Kazandı!';
+                winnerText = '🏆 2. OYUNCU KAZANDI!';
             } else {
-                winnerText = '🤝 Muhteşem Beraberlik!';
+                winnerText = '🤝 MUHTEŞEM BERABERLİK!';
             }
             this.victoryTitle.textContent = winnerText;
             this.victorySubtitle.textContent = `1. Oyuncu: ${this.p1Score} Çift vs 2. Oyuncu: ${this.p2Score} Çift`;
@@ -767,7 +800,9 @@ class MemoryGame {
     // Sticker Album System
     openAlbumModal() {
         this.albumGrid.innerHTML = '';
-        const currentPool = CARD_THEMES[this.selectedTheme] || CARD_THEMES.pets;
+        const levelConfig = LEVELS.find(l => l.id === this.currentLevel) || LEVELS[0];
+        const currentPool = CARD_THEMES[levelConfig.theme] || CARD_THEMES.pets;
+
         currentPool.forEach((card, i) => {
             const isUnlocked = i < this.unlockedLevel * 2;
             const el = document.createElement('div');

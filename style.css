@@ -234,43 +234,49 @@ body {
 .virtual-pet-container {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #fff9e6 0%, #fff0f5 100%);
-    border: 3px dashed #feca57;
-    border-radius: 18px;
-    padding: 8px 16px;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 12px rgba(254, 202, 87, 0.2);
+    gap: 16px;
+    background: linear-gradient(135deg, #fff9e6 0%, #ffeaa7 50%, #fff0f5 100%);
+    border: 3.5px dashed #ffa502;
+    border-radius: 22px;
+    padding: 12px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 20px rgba(254, 202, 87, 0.35);
     flex-shrink: 0;
     width: 100%;
+    transition: transform 0.25s ease;
+}
+
+.virtual-pet-container:hover {
+    transform: scale(1.01);
 }
 
 .pet-avatar-wrapper {
     position: relative;
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     cursor: pointer;
     line-height: 1;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: #ffffff;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    border: 3px solid #ffbe76;
 }
 
 .pet-avatar-wrapper:hover {
-    transform: scale(1.15) rotate(-5deg);
+    transform: scale(1.18) rotate(-6deg);
 }
 
 .pet-hat {
     position: absolute;
-    top: -10px;
-    right: -4px;
-    font-size: 1.2rem;
+    top: -12px;
+    right: -6px;
+    font-size: 1.4rem;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
@@ -283,25 +289,26 @@ body {
 
 .pet-name {
     font-family: var(--font-heading);
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     color: var(--primary-color);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 .pet-speech-inline {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--text-dark);
     background: #ffffff;
-    border: 1.5px solid #ffa502;
-    padding: 3px 10px;
-    border-radius: 12px;
-    margin-top: 3px;
+    border: 2px solid #ffa502;
+    padding: 5px 14px;
+    border-radius: 16px;
+    margin-top: 4px;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    box-shadow: 0 2px 8px rgba(255, 165, 2, 0.2);
 }
 
 /* ===================== MAP CONTROLS BAR ===================== */
