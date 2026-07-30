@@ -90,24 +90,28 @@
         <!-- OYUN ALANI EKRANI (GAME BOARD) -->
         <main id="game-view" class="game-view">
             <div class="game-header">
-                <div class="header-left">
-                    <button id="btn-back-map" class="btn btn-secondary">
+                <div class="game-header-row-1">
+                    <button id="btn-back-map" class="btn btn-secondary btn-sm">
                         <span>⬅️</span> Harita
                     </button>
-                </div>
 
-                <div class="header-center">
-                    <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
-                    <div id="player-turn-indicator" class="player-turn-tag" style="display: none;">
-                        1. Oyuncunun Sırası 👤
+                    <div class="header-center">
+                        <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
+                        <div id="player-turn-indicator" class="player-turn-tag" style="display: none;">
+                            1. Oyuncunun Sırası 👤
+                        </div>
                     </div>
+
+                    <button id="btn-restart" class="btn btn-primary btn-icon-only btn-sm" title="Yeniden Başlat">
+                        🔄
+                    </button>
                 </div>
 
-                <div class="header-right">
-                    <button id="btn-hint" class="btn btn-hint" title="İpucu Al">
+                <div class="game-header-row-2">
+                    <button id="btn-hint" class="btn btn-hint btn-sm" title="İpucu Al">
                         💡 İpucu (<span id="hint-count">3</span>)
                     </button>
-                    <div class="stats-pill">
+                    <div class="stats-pill stats-pill-sm">
                         <div class="stat-item" title="Geçen Süre">
                             <span class="stat-icon">⏱️</span>
                             <span id="timer-text">00:00</span>
@@ -118,9 +122,6 @@
                             <span id="moves-text">0</span>
                         </div>
                     </div>
-                    <button id="btn-restart" class="btn btn-primary btn-icon-only" title="Yeniden Başlat">
-                        🔄
-                    </button>
                 </div>
             </div>
 

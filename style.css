@@ -502,25 +502,27 @@ body {
 /* ===================== GAME BOARD VIEW ===================== */
 .game-header {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-bottom: 6px;
+}
+
+.game-header-row-1, .game-header-row-2 {
+    display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 10px;
-    flex-shrink: 0;
-    margin-bottom: 8px;
-}
-
-.header-left, .header-center, .header-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .header-center {
-    flex: 1;
+    display: flex;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 
 .current-level-tag {
