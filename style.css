@@ -616,13 +616,39 @@ body {
 .card-back {
     background: linear-gradient(135deg, #ff9ff3 0%, #feca57 100%);
     color: white;
+    border: 3.5px solid #ffffff;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.4), 0 8px 16px rgba(0,0,0,0.15);
 }
 
-.card-back.skin-rainbow { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
-.card-back.skin-space { background: linear-gradient(135deg, #30336b 0%, #130f40 100%); }
-.card-back.skin-gold { background: linear-gradient(135deg, #f9ca24 0%, #f0932b 100%); }
-.card-back.skin-jungle { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-.card-back.skin-ocean { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+.card-back.skin-rainbow { 
+    background: radial-gradient(circle at 30% 30%, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
+    border: 3.5px solid #ff758c;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(255, 117, 140, 0.3);
+}
+
+.card-back.skin-jungle { 
+    background: repeating-linear-gradient(45deg, #11998e, #11998e 12px, #2ed573 12px, #2ed573 24px);
+    border: 3.5px solid #ffeaa7;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(46, 213, 115, 0.35);
+}
+
+.card-back.skin-ocean { 
+    background: radial-gradient(circle at 50% 50%, #74b9ff 0%, #0984e3 60%, #002766 100%);
+    border: 3.5px solid #81ecec;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.5), 0 8px 20px rgba(9, 132, 227, 0.35);
+}
+
+.card-back.skin-space { 
+    background: radial-gradient(circle at 50% 50%, #5f27cd 0%, #341f97 60%, #0c2461 100%);
+    border: 3.5px solid #ff9ff3;
+    box-shadow: inset 0 0 20px rgba(255, 159, 243, 0.5), 0 8px 20px rgba(95, 39, 205, 0.4);
+}
+
+.card-back.skin-gold { 
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #e1b12c 100%);
+    border: 4px solid #ffffff;
+    box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.8), 0 0 25px rgba(253, 203, 110, 0.6);
+}
 
 .card-back-pattern {
     font-size: clamp(1.4rem, 3.5vw, 2.8rem);

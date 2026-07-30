@@ -97,12 +97,12 @@ const SHOP_HATS = [
 ];
 
 const CARD_SKINS = [
-    { id: 'default', name: 'Pembe Neşe Paket', class: '', price: 0 },
-    { id: 'rainbow', name: 'Gökkuşağı Kutusu', class: 'skin-rainbow', price: 6 },
-    { id: 'jungle', name: 'Vahşi Orman Teması', class: 'skin-jungle', price: 10 },
-    { id: 'ocean', name: 'Okyanus Dalgaları', class: 'skin-ocean', price: 10 },
-    { id: 'space', name: 'Uzay Serisi Paket', class: 'skin-space', price: 12 },
-    { id: 'gold', name: 'Altın Şampiyon', class: 'skin-gold', price: 18 }
+    { id: 'default', name: 'Pembe Neşe Paket', class: '', icon: '🐾', price: 0 },
+    { id: 'rainbow', name: 'Gökkuşağı Kutusu', class: 'skin-rainbow', icon: '🌈', price: 6 },
+    { id: 'jungle', name: 'Vahşi Orman Teması', class: 'skin-jungle', icon: '🌴', price: 10 },
+    { id: 'ocean', name: 'Okyanus Dalgaları', class: 'skin-ocean', icon: '🐚', price: 10 },
+    { id: 'space', name: 'Uzay Serisi Paket', class: 'skin-space', icon: '🚀', price: 12 },
+    { id: 'gold', name: 'Altın Şampiyon', class: 'skin-gold', icon: '👑', price: 18 }
 ];
 
 class MemoryGame {
@@ -462,6 +462,7 @@ class MemoryGame {
 
         const equippedSkin = CARD_SKINS.find(s => s.id === this.inventory.equippedSkin);
         const skinClass = equippedSkin ? equippedSkin.class : '';
+        const skinIcon = equippedSkin ? equippedSkin.icon : '🐾';
 
         cardDeck.forEach((cardObj, index) => {
             const cardEl = document.createElement('div');
@@ -490,7 +491,7 @@ class MemoryGame {
 
             cardEl.innerHTML = `
                 <div class="card-face card-back ${skinClass}">
-                    <div class="card-back-pattern">🐾</div>
+                    <div class="card-back-pattern">${skinIcon}</div>
                 </div>
                 <div class="card-face card-front">
                     ${frontHTML}
@@ -768,7 +769,7 @@ class MemoryGame {
                 itemEl.className = 'shop-item';
                 itemEl.innerHTML = `
                     <div class="gift-badge">🃏 Desen Paketi</div>
-                    <div class="shop-item-icon">🎁</div>
+                    <div class="shop-item-icon">${skin.icon}</div>
                     <div class="shop-item-name">${skin.name}</div>
                     <div class="shop-item-price">${skin.price === 0 ? 'Ücretsiz' : `${skin.price} ⭐`}</div>
                     <button class="btn ${isEquipped ? 'btn-secondary' : (isOwned ? 'btn-primary' : 'btn-accent')}">
@@ -788,6 +789,8 @@ class MemoryGame {
                         const cardBacks = document.querySelectorAll('.card-back');
                         cardBacks.forEach(cb => {
                             cb.className = `card-face card-back ${skin.class}`;
+                            const patternEl = cb.querySelector('.card-back-pattern');
+                            if (patternEl) patternEl.textContent = skin.icon;
                         });
                     }
                 });
