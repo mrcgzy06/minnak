@@ -96,35 +96,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     border-bottom: 2px solid #f1f2f6;
-    gap: 12px;
+    gap: 8px;
     flex-shrink: 0;
 }
 
 .title-box {
     display: flex;
     align-items: center;
-    gap: 8px;
-}
-
-.title-emoji {
-    font-size: 1.8rem;
+    justify-content: center;
 }
 
 .title-box h1 {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: var(--primary-color);
     text-shadow: 2px 2px 0px #ffe66d;
     line-height: 1;
     white-space: nowrap;
+    text-align: center;
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.btn-sm {
+    font-size: 0.85rem;
+    padding: 5px 12px;
+    min-height: 34px;
+    gap: 4px;
+}
+
+.stats-pill-sm {
+    padding: 4px 10px;
+    font-size: 0.9rem;
 }
 
 /* ===================== STATS PILL COMPONENT ===================== */
@@ -976,13 +986,13 @@ body {
     .header { 
         padding-bottom: 4px; 
         gap: 4px; 
+        flex-wrap: nowrap;
     }
-    .title-emoji { font-size: 1.2rem; }
-    .title-box h1 { font-size: 1rem; text-shadow: none; }
-    .header-right { gap: 4px; }
-    .stats-pill { padding: 3px 6px; font-size: 0.8rem; }
-    .btn { font-size: 0.75rem; padding: 4px 8px; min-height: 30px; gap: 3px; }
-    .btn-icon-only { width: 32px; height: 32px; min-width: 32px; }
+    .title-box h1 { font-size: 0.92rem; text-shadow: none; }
+    .header-right { gap: 3px; }
+    .btn-sm { font-size: 0.72rem; padding: 3px 7px; min-height: 28px; gap: 2px; }
+    .stats-pill-sm { padding: 2px 6px; font-size: 0.78rem; border-width: 1.5px; }
+    .btn-icon-only { width: 28px; height: 28px; min-width: 28px; }
     
     /* Virtual Pet Mobile Box */
     .virtual-pet-container { 
