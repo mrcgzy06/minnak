@@ -13,8 +13,8 @@
     --text-muted: #747d8c;
     --shadow-container: 0 20px 60px rgba(0, 0, 0, 0.12);
     --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.1);
-    --radius-container: clamp(20px, 3vw, 32px);
-    --radius-card: clamp(12px, 2vw, 20px);
+    --radius-container: 24px;
+    --radius-card: 16px;
     --font-heading: 'Fredoka', cursive, sans-serif;
     --font-body: 'Quicksand', sans-serif;
 }
@@ -42,16 +42,13 @@ body {
     align-items: center;
     justify-content: center;
     color: var(--text-dark);
-    padding: clamp(8px, 2vh, 20px) clamp(8px, 2vw, 20px);
 }
 
-/* Background Floating Elements */
+/* ===================== BACKGROUND FLOATING ELEMENTS ===================== */
 .bg-bubbles {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
@@ -71,32 +68,30 @@ body {
     100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
 }
 
-/* Full Viewport App Container */
+/* ===================== APP CONTAINER ===================== */
 .app-container {
     position: relative;
     z-index: 10;
-    width: 100%;
-    max-width: 1280px;
-    height: 100%;
-    max-height: calc(100vh - clamp(16px, 4vh, 40px));
+    width: calc(100vw - 32px);
+    height: calc(100vh - 32px);
+    max-width: 1400px;
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(20px);
     border-radius: var(--radius-container);
     box-shadow: var(--shadow-container);
-    padding: clamp(14px, 2.5vw, 28px);
+    padding: 20px 24px;
     border: 4px solid #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
+    overflow: hidden;
 }
 
-/* Outer Header */
+/* ===================== OUTER HEADER (Title + Stars + Audio) ===================== */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: clamp(10px, 1.5vh, 16px);
+    padding-bottom: 12px;
     border-bottom: 2px solid #f1f2f6;
     gap: 12px;
     flex-shrink: 0;
@@ -109,15 +104,16 @@ body {
 }
 
 .title-emoji {
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-size: 2rem;
 }
 
 .title-box h1 {
     font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 3vw, 2.4rem);
+    font-size: 1.8rem;
     color: var(--primary-color);
     text-shadow: 2px 2px 0px #ffe66d;
     line-height: 1;
+    white-space: nowrap;
 }
 
 .header-right {
@@ -126,17 +122,17 @@ body {
     gap: 10px;
 }
 
-/* Stats Pill Component */
+/* ===================== STATS PILL COMPONENT ===================== */
 .stats-pill {
     display: flex;
     align-items: center;
     gap: 10px;
     background: #ffffff;
-    padding: clamp(6px, 1vh, 10px) clamp(12px, 1.5vw, 20px);
+    padding: 8px 16px;
     border-radius: 50px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     font-family: var(--font-heading);
-    font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+    font-size: 1.1rem;
     border: 2px solid #eccc68;
     color: var(--text-dark);
 }
@@ -158,11 +154,11 @@ body {
     border-radius: 2px;
 }
 
-/* Buttons System */
+/* ===================== BUTTONS SYSTEM ===================== */
 .btn {
     font-family: var(--font-heading);
-    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-    padding: clamp(8px, 1.2vh, 12px) clamp(16px, 2vw, 24px);
+    font-size: 1rem;
+    padding: 10px 22px;
     border-radius: 50px;
     border: none;
     cursor: pointer;
@@ -172,8 +168,9 @@ body {
     justify-content: center;
     gap: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    min-height: clamp(38px, 5vh, 46px);
+    min-height: 42px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .btn:active {
@@ -205,41 +202,39 @@ body {
 .btn-icon-only {
     padding: 0;
     border-radius: 50%;
-    width: clamp(38px, 5vh, 46px);
-    height: clamp(38px, 5vh, 46px);
-    min-width: clamp(38px, 5vh, 46px);
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
     flex-shrink: 0;
 }
 
-/* VIEWS CONTAINER */
+/* ===================== VIEWS CONTAINER ===================== */
 .level-map-view, .game-view {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 100%;
-    height: 100%;
     min-height: 0;
     overflow: hidden;
-    padding-top: clamp(10px, 1.5vh, 20px);
+    padding-top: 16px;
 }
 
-/* LEVEL MAP VIEW */
+/* ===================== LEVEL MAP VIEW ===================== */
 .map-header {
     text-align: center;
     flex-shrink: 0;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .map-header h2 {
     font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+    font-size: 1.8rem;
     color: var(--accent-purple);
     margin-bottom: 4px;
 }
 
 .map-header p {
-    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-size: 1.05rem;
     color: var(--text-muted);
     font-weight: 600;
 }
@@ -252,21 +247,22 @@ body {
     width: 100%;
     min-height: 0;
     overflow-y: auto;
+    padding: 4px;
 }
 
 .levels-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: clamp(12px, 2vw, 24px);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     width: 100%;
-    max-width: 960px;
+    max-width: 900px;
     margin: auto;
 }
 
 .level-card {
     background: #ffffff;
     border-radius: var(--radius-card);
-    padding: clamp(14px, 2vh, 22px) clamp(12px, 1.5vw, 18px);
+    padding: 20px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -291,20 +287,20 @@ body {
 
 .level-number {
     font-family: var(--font-heading);
-    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    font-size: 1.3rem;
     color: var(--primary-color);
     margin-bottom: 2px;
 }
 
 .level-title {
     font-family: var(--font-heading);
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-size: 1.1rem;
     color: var(--text-dark);
     margin-bottom: 6px;
 }
 
 .level-grid-info {
-    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    font-size: 0.85rem;
     color: var(--text-muted);
     background: #f1f2f6;
     padding: 3px 10px;
@@ -316,7 +312,7 @@ body {
 .stars-display {
     display: flex;
     gap: 3px;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-size: 1.4rem;
     margin-bottom: 12px;
 }
 
@@ -336,7 +332,7 @@ body {
     font-size: 1.2rem;
 }
 
-/* GAME BOARD VIEW */
+/* ===================== GAME BOARD VIEW ===================== */
 .game-header {
     display: flex;
     align-items: center;
@@ -344,7 +340,7 @@ body {
     width: 100%;
     gap: 10px;
     flex-shrink: 0;
-    margin-bottom: clamp(10px, 2vh, 18px);
+    margin-bottom: 12px;
 }
 
 .header-left, .header-center, .header-right {
@@ -360,7 +356,7 @@ body {
 
 .current-level-tag {
     font-family: var(--font-heading);
-    font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+    font-size: 1.1rem;
     color: var(--accent-purple);
     background: #eccc6833;
     border: 2px solid #ffa502;
@@ -370,26 +366,25 @@ body {
     font-weight: 700;
 }
 
-/* CARDS GRID CONTAINER - EXPANDS TO FILL AVAILABLE HEIGHT & WIDTH */
+/* ===================== CARDS GRID CONTAINER ===================== */
 .cards-grid-container {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
-    min-height: 0; /* Prevents overflow */
+    min-height: 0;
     overflow: hidden;
 }
 
 .cards-grid {
     display: grid;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     margin: auto;
 }
 
-/* CARD COMPONENT */
+/* ===================== CARD COMPONENT ===================== */
 .card {
     position: relative;
     aspect-ratio: 1 / 1;
@@ -461,13 +456,11 @@ body {
     100% { transform: rotateY(180deg) scale(1); }
 }
 
-/* VICTORY MODAL */
+/* ===================== VICTORY MODAL ===================== */
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(8px);
     display: flex;
@@ -488,7 +481,7 @@ body {
 .modal-card {
     background: #ffffff;
     border-radius: var(--radius-container);
-    padding: clamp(20px, 3.5vw, 32px);
+    padding: 28px;
     width: 100%;
     max-width: 400px;
     text-align: center;
@@ -504,7 +497,7 @@ body {
 
 .modal-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 4px;
 }
@@ -513,7 +506,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 8px;
-    font-size: clamp(2.4rem, 4.5vw, 3.2rem);
+    font-size: 2.8rem;
     margin: 14px 0;
 }
 
@@ -541,7 +534,7 @@ body {
     padding: 12px 18px;
     border-radius: 16px;
     margin-bottom: 18px;
-    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-size: 1.05rem;
     display: flex;
     justify-content: space-around;
     font-weight: 700;
@@ -557,33 +550,120 @@ body {
     flex: 1;
 }
 
-/* Confetti Canvas */
+/* ===================== CONFETTI CANVAS ===================== */
 #confetti-canvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     pointer-events: none;
     z-index: 99;
 }
 
-/* MOBILE ADAPTATION (< 650px) */
-@media (max-width: 649px) {
+/* ===================== DESKTOP LAYOUT (>= 768px) ===================== */
+@media (min-width: 768px) {
     body {
-        padding: 6px;
+        padding: 16px;
+    }
+
+    .levels-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+/* ===================== MOBILE LAYOUT (< 768px) ===================== */
+@media (max-width: 767px) {
+    body {
+        padding: 0;
     }
 
     .app-container {
-        padding: 12px;
-        max-height: 100vh;
-        border-radius: 18px;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+        padding: 10px 12px;
+    }
+
+    .header {
+        padding-bottom: 8px;
+        gap: 8px;
+    }
+
+    .title-emoji {
+        font-size: 1.4rem;
+    }
+
+    .title-box h1 {
+        font-size: 1.2rem;
+    }
+
+    .stats-pill {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        gap: 6px;
+    }
+
+    .btn {
+        font-size: 0.85rem;
+        padding: 7px 14px;
+        min-height: 36px;
+    }
+
+    .btn-icon-only {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+
+    .level-map-view, .game-view {
+        padding-top: 10px;
+    }
+
+    .map-header {
+        margin-bottom: 10px;
+    }
+
+    .map-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .map-header p {
+        font-size: 0.9rem;
+    }
+
+    .levels-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        max-width: 100%;
+    }
+
+    .level-card {
+        padding: 12px 10px;
+    }
+
+    .level-number {
+        font-size: 1rem;
+    }
+
+    .level-title {
+        font-size: 0.9rem;
+    }
+
+    .level-grid-info {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+    }
+
+    .stars-display {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
     }
 
     .game-header {
         flex-wrap: wrap;
         gap: 6px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .header-center {
@@ -594,15 +674,33 @@ body {
     .current-level-tag {
         width: 100%;
         padding: 3px 12px;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===================== VERY SMALL PHONES (< 380px) ===================== */
+@media (max-width: 379px) {
+    .app-container {
+        padding: 6px 8px;
+    }
+
+    .title-box h1 {
+        font-size: 1rem;
+    }
+
+    .title-emoji {
+        font-size: 1.1rem;
+    }
+
+    .map-header h2 {
+        font-size: 1.1rem;
     }
 
     .levels-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: 8px;
     }
 
     .level-card {
-        padding: 12px 8px;
+        padding: 8px 6px;
     }
 }

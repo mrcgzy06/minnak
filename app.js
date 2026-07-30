@@ -158,18 +158,21 @@ class MemoryGame {
     applyGridConfig(levelConfig) {
         if (!this.cardsGridContainer || !this.cardsGrid) return;
 
-        const availableWidth = this.cardsGridContainer.clientWidth - 16;
-        const availableHeight = this.cardsGridContainer.clientHeight - 16;
+        // Get actual container dimensions with minimal padding
+        const containerPadding = 8;
+        const availableWidth = this.cardsGridContainer.clientWidth - (containerPadding * 2);
+        const availableHeight = this.cardsGridContainer.clientHeight - (containerPadding * 2);
 
         if (availableWidth <= 0 || availableHeight <= 0) return;
 
-        const width = window.innerWidth;
+        const vw = window.innerWidth;
         const totalCards = levelConfig.pairs * 2;
+        const isDesktop = vw >= 768;
 
         let cols, rows;
 
-        if (width >= 900) {
-            // DESKTOP LAYOUT (Wide Landscape)
+        if (isDesktop) {
+            // DESKTOP: Prioritize horizontal (landscape) layout
             if (totalCards === 24) { cols = 6; rows = 4; }
             else if (totalCards === 20) { cols = 5; rows = 4; }
             else if (totalCards === 16) { cols = 4; rows = 4; }
@@ -177,7 +180,7 @@ class MemoryGame {
             else if (totalCards === 6)  { cols = 3; rows = 2; }
             else if (totalCards === 4)  { cols = 2; rows = 2; }
         } else {
-            // MOBILE LAYOUT (Tall Portrait)
+            // MOBILE: Prioritize vertical (portrait) layout
             if (totalCards === 24) { cols = 4; rows = 6; }
             else if (totalCards === 20) { cols = 4; rows = 5; }
             else if (totalCards === 16) { cols = 4; rows = 4; }
@@ -186,22 +189,26 @@ class MemoryGame {
             else if (totalCards === 4)  { cols = 2; rows = 2; }
         }
 
-        const gap = width <= 600 ? 10 : 16;
+        // Gap scales with viewport but stays reasonable
+        const gap = isDesktop ? 14 : 8;
 
-        // Mathematical Optimal Card Size Calculation
+        // Calculate the maximum card size that fits in both dimensions
         const maxCardW = (availableWidth - (cols - 1) * gap) / cols;
         const maxCardH = (availableHeight - (rows - 1) * gap) / rows;
 
+        // Take the smaller of the two to maintain square cards, floor for clean pixels
         let cardSize = Math.floor(Math.min(maxCardW, maxCardH));
 
-        // Caps to ensure comfortable scaling
-        const maxCap = width >= 900 ? 240 : 140;
-        const minCap = width <= 600 ? 52 : 75;
-        cardSize = Math.max(minCap, Math.min(cardSize, maxCap));
+        // Minimum size: prevent unplayable tiny cards
+        const minSize = isDesktop ? 80 : 56;
+        cardSize = Math.max(minSize, cardSize);
 
+        // Apply grid styles
         this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
+        this.cardsGrid.style.gridTemplateRows = `repeat(${rows}, ${cardSize}px)`;
         this.cardsGrid.style.gap = `${gap}px`;
 
+        // Apply card sizes
         const cardEls = this.cardsGrid.querySelectorAll('.card');
         cardEls.forEach(cardEl => {
             cardEl.style.width = `${cardSize}px`;
