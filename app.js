@@ -1,4 +1,4 @@
-// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı
+// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı (Mobil & Web Uyumlu)
 
 const LEVELS = [
     { id: 1, title: 'Bölüm 1: Minik Patiler', rows: 2, cols: 2, pairs: 2, star3Moves: 5, star2Moves: 8 },
@@ -40,6 +40,7 @@ class MemoryGame {
         this.gameView = document.getElementById('game-view');
         this.levelsContainer = document.getElementById('levels-container');
         this.cardsGrid = document.getElementById('cards-grid');
+        this.currentLevelTitle = document.getElementById('current-level-title');
         
         this.totalStarsEl = document.getElementById('total-stars');
         this.timerText = document.getElementById('timer-text');
@@ -92,6 +93,16 @@ class MemoryGame {
                 this.showLevelMap();
             }
         });
+
+        window.addEventListener('resize', () => {
+            if (this.gameView.style.display === 'flex') {
+                const levelConfig = LEVELS.find(l => l.id === this.currentLevel);
+                if (levelConfig) {
+                    const cols = this.getGridColumns(levelConfig);
+                    this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                }
+            }
+        });
     }
 
     updateTotalStars() {
@@ -115,7 +126,7 @@ class MemoryGame {
                 ${!isUnlocked ? '<div class="lock-badge">🔒</div>' : ''}
                 <div class="level-number">Bölüm ${lvl.id}</div>
                 <div class="level-title">${lvl.title.split(': ')[1]}</div>
-                <div class="level-grid-info">${lvl.rows}x${lvl.cols} (${lvl.pairs * 2} Kart)</div>
+                <div class="level-grid-info">${lvl.pairs * 2} Kart (${lvl.pairs} Çift)</div>
                 <div class="stars-display">
                     <span class="star ${stars >= 1 ? 'active' : ''}">⭐</span>
                     <span class="star ${stars >= 2 ? 'active' : ''}">⭐</span>
@@ -144,9 +155,37 @@ class MemoryGame {
         this.renderLevelMap();
     }
 
+    getGridColumns(levelConfig) {
+        const width = window.innerWidth;
+        const totalCards = levelConfig.pairs * 2;
+
+        if (width <= 480) {
+            // Mobile layout: max 4 columns to keep cards large and touch-friendly
+            if (totalCards === 24) return 4; // 4x6
+            if (totalCards === 20) return 4; // 4x5
+            if (totalCards === 16) return 4; // 4x4
+            if (totalCards === 12) return 3; // 3x4
+            if (totalCards === 6) return 3;  // 3x2
+            if (totalCards === 4) return 2;  // 2x2
+        } else if (width <= 650) {
+            if (totalCards === 24) return 4;
+            if (totalCards === 20) return 4;
+            if (totalCards === 16) return 4;
+            if (totalCards === 12) return 4;
+            if (totalCards === 6) return 3;
+            if (totalCards === 4) return 2;
+        }
+
+        return levelConfig.cols;
+    }
+
     startLevel(levelId) {
         this.currentLevel = levelId;
         const levelConfig = LEVELS.find(l => l.id === levelId);
+
+        if (this.currentLevelTitle) {
+            this.currentLevelTitle.textContent = levelConfig.title;
+        }
 
         this.moves = 0;
         this.matchedPairs = 0;
@@ -161,8 +200,9 @@ class MemoryGame {
         this.levelMapView.style.display = 'none';
         this.gameView.style.display = 'flex';
 
-        // Setup Grid Columns
-        this.cardsGrid.style.gridTemplateColumns = `repeat(${levelConfig.cols}, 1fr)`;
+        // Setup Grid Columns dynamically
+        const cols = this.getGridColumns(levelConfig);
+        this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
         this.renderCards(levelConfig);
     }
 
@@ -314,7 +354,7 @@ class MemoryGame {
             setTimeout(() => { if (earnedStars >= 3) this.vStar3.classList.add('active'); }, 800);
 
             if (this.currentLevel === LEVELS.length) {
-                this.btnModalNext.textContent = 'Şampiyon Oldun! 🏆';
+                this.btnModalNext.textContent = 'Şampiyon! 🏆';
             } else {
                 this.btnModalNext.textContent = 'Sonraki Bölüm ➡️';
             }

@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sevimli Kedi & Köpek Kart Eşleştirme Oyunu 🐱🐶</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐶</text></svg>">
@@ -28,16 +28,19 @@
         <!-- Üst Başlık & Kontroller -->
         <header class="header">
             <div class="title-box">
-                <span style="font-size: 2.2rem;">🐱</span>
+                <span style="font-size: 1.8rem;">🐱</span>
                 <h1>Pati Hafıza Oyunu</h1>
-                <span style="font-size: 2.2rem;">🐶</span>
+                <span style="font-size: 1.8rem;">🐶</span>
             </div>
 
-            <div class="stats-bar">
-                <div class="stat-item" title="Toplam Kazanılan Yıldızlar">
-                    <span class="stat-icon">⭐</span>
-                    <span id="total-stars">0</span>
+            <div class="header-right">
+                <div class="stats-bar">
+                    <div class="stat-item" title="Toplam Kazanılan Yıldızlar">
+                        <span class="stat-icon">⭐</span>
+                        <span id="total-stars">0</span>
+                    </div>
                 </div>
+
                 <button id="btn-audio" class="btn btn-secondary btn-icon-only" title="Ses Aç/Kapat">
                     🔊
                 </button>
@@ -48,11 +51,11 @@
         <main id="level-map-view" class="level-map-view">
             <div class="map-header">
                 <h2>Bölüm Seçimi</h2>
-                <p>Kilitleri açmak için bölümleri tamamla ve yıldızları topla!</p>
+                <p>Bölümleri tamamla, kilitleri aç ve yıldızları topla!</p>
             </div>
 
             <div class="levels-grid" id="levels-container">
-                <!-- Javascript ile Dinamik Oluşturulacak Bölüm Kartları -->
+                <!-- Javascript ile Dinamik Bölüm Kartları -->
             </div>
         </main>
 
@@ -60,8 +63,10 @@
         <main id="game-view" class="game-view">
             <div class="game-header">
                 <button id="btn-back-map" class="btn btn-secondary">
-                    <span>⬅️</span> Bölüm Haritası
+                    <span>⬅️</span> Harita
                 </button>
+
+                <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
 
                 <div class="stats-bar">
                     <div class="stat-item" title="Geçen Süre">
@@ -92,7 +97,7 @@
     <div id="victory-modal" class="modal-overlay">
         <div class="modal-card">
             <h2 class="modal-title">Tebrikler! 🎉</h2>
-            <p id="victory-subtitle" style="font-size: 1.1rem; color: #636e72;">Bölümü Başarıyla Tamamladın!</p>
+            <p id="victory-subtitle" style="font-size: 1rem; color: #636e72; margin-bottom: 8px;">Bölümü Başarıyla Tamamladın!</p>
 
             <div class="victory-stars">
                 <span class="star" id="v-star-1">⭐</span>
@@ -101,8 +106,8 @@
             </div>
 
             <div class="modal-stats">
-                <p>⏱️ Süre: <strong id="v-time">00:15</strong></p>
-                <p>🎯 Hamle Sayısı: <strong id="v-moves">8</strong></p>
+                <div>⏱️ Süre: <strong id="v-time">00:15</strong></div>
+                <div>🎯 Hamle: <strong id="v-moves">8</strong></div>
             </div>
 
             <div class="modal-actions">
@@ -111,7 +116,7 @@
                 </button>
 
                 <button id="btn-modal-next" class="btn btn-primary">
-                    Sonraki Bölüm ➡️
+                    Sonraki ➡️
                 </button>
             </div>
         </div>
