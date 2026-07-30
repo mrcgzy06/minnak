@@ -961,16 +961,63 @@ body {
 
 @media (max-width: 767px) {
     body { padding: 0; }
-    .app-container { width: 100vw; height: 100vh; border-radius: 0; border: none; padding: 8px 10px; }
-    .header { padding-bottom: 6px; gap: 6px; }
-    .title-emoji { font-size: 1.3rem; }
-    .title-box h1 { font-size: 1.1rem; }
-    .stats-pill { padding: 4px 8px; font-size: 0.85rem; }
-    .btn { font-size: 0.8rem; padding: 6px 12px; min-height: 32px; }
-    .virtual-pet-container { padding: 6px 10px; gap: 8px; margin-bottom: 6px; }
-    .pet-avatar-wrapper { width: 42px; height: 42px; min-width: 42px; font-size: 1.8rem; }
-    .pet-speech-inline { font-size: 0.75rem; padding: 2px 8px; }
+    .app-container { 
+        width: 100vw; 
+        height: 100vh; 
+        border-radius: 0; 
+        border: none; 
+        padding: 6px 8px; 
+    }
+    .header { 
+        padding-bottom: 4px; 
+        gap: 4px; 
+    }
+    .title-emoji { font-size: 1.2rem; }
+    .title-box h1 { font-size: 1rem; text-shadow: none; }
+    .header-right { gap: 4px; }
+    .stats-pill { padding: 3px 6px; font-size: 0.8rem; }
+    .btn { font-size: 0.75rem; padding: 4px 8px; min-height: 30px; gap: 3px; }
+    .btn-icon-only { width: 32px; height: 32px; min-width: 32px; }
+    
+    /* Virtual Pet Mobile Box */
+    .virtual-pet-container { 
+        padding: 6px 10px; 
+        gap: 8px; 
+        margin-bottom: 6px; 
+        border-width: 2.5px;
+        border-radius: 16px;
+    }
+    .pet-avatar-wrapper { 
+        width: 44px; 
+        height: 44px; 
+        min-width: 44px; 
+        font-size: 1.7rem; 
+        border-width: 2px;
+    }
+    .pet-name { font-size: 0.95rem; }
+    .pet-speech-inline { font-size: 0.72rem; padding: 2px 6px; border-radius: 10px; }
+    
+    /* Map & Headers Mobile */
+    .map-controls-bar { margin-bottom: 6px; }
+    .map-header { margin-bottom: 6px; }
+    .map-header h2 { font-size: 1.2rem; }
+    .map-header p { font-size: 0.78rem; }
     .levels-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    .level-card { padding: 10px 8px; }
-    .shop-content, .album-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .level-card { padding: 8px 6px; }
+    .level-number { font-size: 0.95rem; }
+    .level-title { font-size: 0.82rem; }
+    .stars-display { font-size: 1rem; margin-bottom: 4px; }
+    
+    /* Game Board Header Mobile */
+    .game-header { gap: 4px; margin-bottom: 4px; }
+    .current-level-tag { font-size: 0.8rem; padding: 2px 8px; }
+    .player-turn-tag { font-size: 0.72rem; padding: 2px 8px; }
+    
+    /* Modals Mobile */
+    .modal-card { padding: 14px 12px; border-radius: 18px; max-width: 94vw; }
+    .modal-header-row h2 { font-size: 1.2rem; }
+    .shop-content, .album-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 58vh; }
+    .shop-item, .album-item { padding: 8px 6px; border-radius: 14px; }
+    .shop-item-icon { font-size: 2rem; }
+    .shop-item-name { font-size: 0.8rem; }
 }
