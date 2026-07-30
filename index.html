@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sevimli Kedi & Köpek Kart Eşleştirme Oyunu 🐱🐶</title>
+    <title>Sevimli Pati Hafıza Oyunu 🐱🐶🦁🐬</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐶</text></svg>">
 </head>
@@ -52,18 +52,17 @@
 
         <!-- SEVİYE HARİTASI EKRANI (LEVEL MAP) -->
         <main id="level-map-view" class="level-map-view">
-            <!-- SANAL PATİ DOSTU BÖLÜMÜ (Virtual Companion Box) -->
+            <!-- SANAL PATİ DOSTU BÖLÜMÜ (Flex Layout Inside Box) -->
             <div class="virtual-pet-container" id="virtual-pet-container">
-                <div class="pet-speech-bubble" id="pet-speech">
-                    Birlikte oynayalım mı? ⭐ Yıldız topla, bana hediye al!
-                </div>
                 <div class="pet-avatar-wrapper" id="pet-avatar-btn" title="Doğrudan Sevmek İçin Tıkla!">
                     <span class="pet-hat" id="pet-hat-display">👑</span>
                     <span class="pet-avatar" id="pet-avatar-emoji">🐱</span>
                 </div>
-                <div class="pet-info">
+                <div class="pet-details">
                     <div class="pet-name" id="pet-name-display">Pamuk 🐾</div>
-                    <div class="pet-status">Birlikte Neşeliyiz!</div>
+                    <div class="pet-speech-inline" id="pet-speech">
+                        Birlikte oynayalım mı? ⭐ Yıldız topla, bana hediye al!
+                    </div>
                 </div>
             </div>
 
@@ -72,17 +71,17 @@
                 <div class="control-group">
                     <span class="control-label">👥 Mod:</span>
                     <div class="pill-selector" id="mode-selector">
-                        <button class="pill-btn active" data-mode="1p">Single 👤</button>
-                        <button class="pill-btn" data-mode="2p">2 Kişilik 👥</button>
+                        <button class="pill-btn active" data-mode="1p">Tek Kişilik 👤</button>
+                        <button class="pill-btn" data-mode="2p">2 Kişilik (Sırayla) 👥</button>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <span class="control-label">🎨 Tema:</span>
                     <div class="pill-selector" id="theme-selector">
-                        <button class="pill-btn active" data-theme="mixed">Karışık 🐾</button>
-                        <button class="pill-btn" data-theme="cats">Kediler 🐱</button>
-                        <button class="pill-btn" data-theme="dogs">Köpekler 🐶</button>
+                        <button class="pill-btn active" data-theme="pets">Evcil Dostlar 🐱🐶</button>
+                        <button class="pill-btn" data-theme="wild">Vahşi Orman 🦁🐘</button>
+                        <button class="pill-btn" data-theme="sea">Deniz Altı 🐬🐙</button>
                     </div>
                 </div>
             </div>
@@ -111,7 +110,7 @@
                 <div class="header-center">
                     <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
                     <div id="player-turn-indicator" class="player-turn-tag" style="display: none;">
-                        Sıra: 1. Oyuncu 👤
+                        1. Oyuncu Oynuyor 👤
                     </div>
                 </div>
 
@@ -165,12 +164,6 @@
                 <div>🎯 Hamle: <strong id="v-moves">8</strong></div>
             </div>
 
-            <!-- INTERAKTİF BALON PATLATMA ALANI -->
-            <div class="balloon-pop-zone" id="balloon-pop-zone">
-                <p style="font-size:0.85rem; color:#747d8c; font-weight:700; margin-bottom:4px;">🎈 Balonlara tıkla ve patlat!</p>
-                <div id="balloons-wrapper" class="balloons-wrapper"></div>
-            </div>
-
             <div class="modal-actions">
                 <button id="btn-modal-map" class="btn btn-secondary">
                     🗺️ Harita
@@ -180,6 +173,22 @@
                     Sonraki ➡️
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- 2. OYUNCU GEÇİŞ MODALI -->
+    <div id="p2-turn-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h2 class="modal-title" style="color:var(--accent-purple);">1. Oyuncu Tamamladı! 🎯</h2>
+            <p style="font-size: 1.1rem; color: #2f3542; margin: 12px 0;">
+                Skor: <strong id="p1-summary-stats">8 Hamle - 00:15 Süre</strong>
+            </p>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 20px;">
+                Şimdi Sıra 2. Oyuncuda! 👤
+            </div>
+            <button id="btn-start-p2" class="btn btn-primary" style="width:100%; font-size:1.1rem; padding:12px;">
+                2. Oyuncu Başlasın ▶
+            </button>
         </div>
     </div>
 
@@ -207,10 +216,10 @@
     <div id="album-modal" class="modal-overlay">
         <div class="modal-card album-modal-card">
             <div class="modal-header-row">
-                <h2>📖 Pati Koleksiyon Albümü</h2>
+                <h2>📖 Koleksiyon Albümü</h2>
                 <button id="btn-close-album" class="btn-close">✖</button>
             </div>
-            <p class="modal-subtitle">Tamamladığın bölümlerle karakter kartvizitlerinin kilidini aç!</p>
+            <p class="modal-subtitle">Bölümleri geçtikçe açılan sevimli dost kartvizitleri!</p>
 
             <div class="album-grid" id="album-grid">
                 <!-- Javascript ile Çıkartmalar -->

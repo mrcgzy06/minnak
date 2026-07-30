@@ -1,4 +1,4 @@
-// Sevimli Kedi & Köpek Kart Eşleştirme Oyunu - Ana Mantık & Modüller
+// Sevimli Pati Hafıza Oyunu - Ana Mantık & Modüller
 
 const LEVELS = [
     { id: 1, title: 'Bölüm 1: Minik Patiler', rows: 2, cols: 2, pairs: 2, star3Moves: 5, star2Moves: 8 },
@@ -9,21 +9,51 @@ const LEVELS = [
     { id: 6, title: 'Bölüm 6: Pati Şampiyonu', rows: 4, cols: 6, pairs: 12, star3Moves: 30, star2Moves: 42 }
 ];
 
-const CARD_IMAGES = [
-    { src: 'assets/card1.jpg', type: 'cat', name: 'Dedektif Bıyık', bio: 'Her zaman büyüteciyle ipuçlarını arar!' },
-    { src: 'assets/card2.jpg', type: 'dog', name: 'Kahraman Şanslı', bio: 'Kırmızı peleriniyle yardıma koşar!' },
-    { src: 'assets/card3.jpg', type: 'cat', name: 'Uyku Güzeli', bio: 'Bulutların üzerinde mışıl mışıl uyur.' },
-    { src: 'assets/card4.jpg', type: 'dog', name: 'Gözlüklü Çapkın', bio: 'Güneş gözlükleriyle çok havalı!' },
-    { src: 'assets/card5.jpg', type: 'cat', name: 'Usta Aşçı', bio: 'En tatlı kekleri ve mamaları o yapar.' },
-    { src: 'assets/card6.jpg', type: 'dog', name: 'Astronot Karabaş', bio: 'Uzayda kemik gezegeni arıyor!' },
-    { src: 'assets/card7.jpg', type: 'cat', name: 'Korsan Bıyık', bio: 'Hazine haritasını sadece o bilir.' },
-    { src: 'assets/card8.jpg', type: 'dog', name: 'Ressam Pati', bio: 'Dünyayı rengarenk boyamayı sever.' },
-    { src: 'assets/card9.jpg', type: 'cat', name: 'Büyücü Pati', bio: 'Sihirli değneğiyle neşe saçar.' },
-    { src: 'assets/card10.jpg', type: 'dog', name: 'Hızlı Sürücü', bio: 'Scooterı ile rüzgar gibi geçer!' },
-    { src: 'assets/card11.jpg', type: 'cat', name: 'Oyuncu Kedi', bio: 'Kulaklığıyla en sevdiği şarkıları dinler.' },
-    { src: 'assets/card12.jpg', type: 'dog', name: 'Doktor Pati', bio: 'Hasta dostlarını hemen iyileştirir.' },
-    { src: 'assets/card13.jpg', type: 'cat', name: 'Kelebek Avcısı', bio: 'Mavi kelebeklerle oynamaya bayılır.' }
-];
+const CARD_THEMES = {
+    pets: [
+        { src: 'assets/card1.jpg', name: 'Dedektif Bıyık', bio: 'Büyüteciyle her ipucunu bulur!' },
+        { src: 'assets/card2.jpg', name: 'Kahraman Şanslı', bio: 'Peleriniyle yardıma koşar!' },
+        { src: 'assets/card3.jpg', name: 'Uyku Güzeli', bio: 'Bulutlarda mışıl mışıl uyur.' },
+        { src: 'assets/card4.jpg', name: 'Gözlüklü Çapkın', bio: 'Güneş gözlükleriyle çok havalı!' },
+        { src: 'assets/card5.jpg', name: 'Usta Aşçı', bio: 'En tatlı kekleri o yapar.' },
+        { src: 'assets/card6.jpg', name: 'Astronot Karabaş', bio: 'Uzayda kemik arıyor!' },
+        { src: 'assets/card7.jpg', name: 'Korsan Bıyık', bio: 'Hazine haritasını sadece o bilir.' },
+        { src: 'assets/card8.jpg', name: 'Ressam Pati', bio: 'Dünyayı rengarenk boyar.' },
+        { src: 'assets/card9.jpg', name: 'Büyücü Pati', bio: 'Sihirli değneğiyle neşe saçar.' },
+        { src: 'assets/card10.jpg', name: 'Hızlı Sürücü', bio: 'Scooterı ile rüzgar gibi geçer!' },
+        { src: 'assets/card11.jpg', name: 'Oyuncu Kedi', bio: 'Kulaklığıyla en sevdiği şarkıları dinler.' },
+        { src: 'assets/card12.jpg', name: 'Doktor Pati', bio: 'Hasta dostlarını iyileştirir.' },
+        { src: 'assets/card13.jpg', name: 'Kelebek Avcısı', bio: 'Mavi kelebeklerle oynamaya bayılır.' }
+    ],
+    wild: [
+        { emoji: '🦁', name: 'Kral Aslan', bio: 'Ormanların cesur lideridir.' },
+        { emoji: '🐘', name: 'Sevimli Fil', bio: 'Hortumuyla serin sular püskürtür.' },
+        { emoji: '🦒', name: 'Zarif Zürafa', bio: 'En yüksek ağaçların yapraklarını yer.' },
+        { emoji: '🦓', name: 'Çizgili Zebra', bio: 'Koşu yarışlarında birincidir.' },
+        { emoji: '🐒', name: 'Neşeli Maymun', bio: 'Ağaçtan ağaca muz toplayarak atlar.' },
+        { emoji: '🐼', name: 'Tombul Panda', bio: 'Bambu yapraklarını çok sever.' },
+        { emoji: '🐻', name: 'Ayı Bobo', bio: 'En tatlı balları o bulur.' },
+        { emoji: '🐯', name: 'Hızlı Kaplan', bio: 'Turuncu çizgileriyle çok güçlüdür.' },
+        { emoji: '🐊', name: 'Yeşil Timsah', bio: 'Nehirlerde yüzer ve güneşlenir.' },
+        { emoji: '🐸', name: 'Zıpzıp Kurbağa', bio: 'Nilüfer yapraklarında zıplar.' },
+        { emoji: '🦜', name: 'Renkli Papağan', bio: 'En güzel şarkıları söyler.' },
+        { emoji: '🐨', name: 'Uykucu Koala', bio: 'Okaliptüs ağaçlarına sarılır.' }
+    ],
+    sea: [
+        { emoji: '🐬', name: 'Zeki Yunus', bio: 'Denizde taklalar atarak yüzer.' },
+        { emoji: '🐙', name: 'Sevimli Ahtapot', bio: '8 kollu sarılma ustasıdır.' },
+        { emoji: '🦈', name: 'Güleryüzlü Köpekbalığı', bio: 'Denizaltının en hızlı yüzücüsüdür.' },
+        { emoji: '🐳', name: 'Dev Balina', bio: 'Deniz üstünde neşeli fıskiyeler yapar.' },
+        { emoji: '🐢', name: 'Bilge Kaplumbağa', bio: 'Akıntıları takip ederek seyahat eder.' },
+        { emoji: '🦀', name: 'Kırmızı Yengeç', bio: 'Kumsalda yan yan yürümeyi sever.' },
+        { emoji: '⭐', name: 'Deniz Yıldızı', bio: 'Kumsalı ışıl ışıl parlatır.' },
+        { emoji: '🐠', name: 'Palyaço Balığı', bio: 'Mercanların arasında saklambaç oynar.' },
+        { emoji: '🪼', name: 'Işıltılı Deniz Anası', bio: 'Gece denizinde renkli ışık saçar.' },
+        { emoji: '🦞', name: 'Kırmızı Istakoz', bio: 'Deniz kabuklarını toplar.' },
+        { emoji: '🦭', name: 'Usta Fok', bio: 'Topu burnunda dengede tutar.' },
+        { emoji: '🦪', name: 'İnci İstiridye', bio: 'İçinde parlak sürprizler saklar.' }
+    ]
+};
 
 const SHOP_HATS = [
     { id: 'none', emoji: '', name: 'Varsayılan', price: 0 },
@@ -49,7 +79,7 @@ class MemoryGame {
 
         // State variables
         this.gameMode = '1p'; // '1p' or '2p'
-        this.selectedTheme = 'mixed'; // 'mixed', 'cats', 'dogs'
+        this.selectedTheme = 'pets'; // 'pets', 'wild', 'sea'
         this.moves = 0;
         this.matchedPairs = 0;
         this.timerSeconds = 0;
@@ -61,10 +91,12 @@ class MemoryGame {
         this.comboCount = 0;
         this.lastMatchTime = 0;
 
-        // 2 Player state
-        this.currentPlayer = 1; // 1 or 2
-        this.p1Score = 0;
-        this.p2Score = 0;
+        // 2 Player Sequential state
+        this.p2ActiveTurn = 1; // 1 or 2
+        this.p1Moves = 0;
+        this.p1TimeSeconds = 0;
+        this.p2Moves = 0;
+        this.p2TimeSeconds = 0;
 
         // Hint state
         this.hintsRemaining = 3;
@@ -106,6 +138,7 @@ class MemoryGame {
         // Modals
         this.victoryModal = document.getElementById('victory-modal');
         this.victoryTitle = document.getElementById('victory-title');
+        this.victorySubtitle = document.getElementById('victory-subtitle');
         this.vStar1 = document.getElementById('v-star-1');
         this.vStar2 = document.getElementById('v-star-2');
         this.vStar3 = document.getElementById('v-star-3');
@@ -113,7 +146,11 @@ class MemoryGame {
         this.vMoves = document.getElementById('v-moves');
         this.btnModalMap = document.getElementById('btn-modal-map');
         this.btnModalNext = document.getElementById('btn-modal-next');
-        this.balloonsWrapper = document.getElementById('balloons-wrapper');
+
+        // 2P Modal
+        this.p2TurnModal = document.getElementById('p2-turn-modal');
+        this.p1SummaryStats = document.getElementById('p1-summary-stats');
+        this.btnStartP2 = document.getElementById('btn-start-p2');
 
         // Shop & Album
         this.btnOpenShop = document.getElementById('btn-open-shop');
@@ -160,17 +197,23 @@ class MemoryGame {
             }
         });
 
+        this.btnStartP2.addEventListener('click', () => {
+            window.soundManager.playClick();
+            this.p2TurnModal.classList.remove('active');
+            this.startP2Turn();
+        });
+
         // Virtual Pet Interaction
         this.petAvatarBtn.addEventListener('click', () => {
             window.soundManager.playPurr();
-            this.petAvatarBtn.style.transform = 'scale(1.3) rotate(15deg)';
+            this.petAvatarBtn.style.transform = 'scale(1.25) rotate(12deg)';
             setTimeout(() => { this.petAvatarBtn.style.transform = ''; }, 300);
             
             const messages = [
                 'Miyav! Seni çok seviyorum! 🐱',
-                'Hav hav! Birlikte harikayız! 🐶',
-                'Harika oynuyorsun, devam et! ⭐',
-                'Bana yeni bir şapka alalım mı? 🎩'
+                'Birlikte harikayız! ⭐',
+                'Harika oynuyorsun, devam et! 🚀',
+                'Mağazadan bana yeni bir şapka alalım mı? 🎩'
             ];
             this.petSpeech.textContent = messages[Math.floor(Math.random() * messages.length)];
         });
@@ -218,7 +261,7 @@ class MemoryGame {
 
         // Shop Tabs
         document.querySelectorAll('.shop-tab').forEach(tab => {
-            tab.addEventListener('click', (e) => {
+            tab.addEventListener('click', () => {
                 window.soundManager.playClick();
                 document.querySelectorAll('.shop-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
@@ -363,14 +406,15 @@ class MemoryGame {
         this.hintsRemaining = 3;
         this.hintCountEl.textContent = '3';
 
-        // 2 Player setup
-        this.currentPlayer = 1;
-        this.p1Score = 0;
-        this.p2Score = 0;
+        this.p2ActiveTurn = 1;
+        this.p1Moves = 0;
+        this.p1TimeSeconds = 0;
+        this.p2Moves = 0;
+        this.p2TimeSeconds = 0;
 
         if (this.gameMode === '2p') {
             this.playerTurnTag.style.display = 'inline-block';
-            this.playerTurnTag.textContent = 'Sıra: 1. Oyuncu 👤 (0 Puan)';
+            this.playerTurnTag.textContent = '1. Oyuncu Oynuyor 👤';
         } else {
             this.playerTurnTag.style.display = 'none';
         }
@@ -385,24 +429,33 @@ class MemoryGame {
         this.renderCards(levelConfig);
     }
 
+    startP2Turn() {
+        const levelConfig = LEVELS.find(l => l.id === this.currentLevel);
+        this.p2ActiveTurn = 2;
+        this.moves = 0;
+        this.matchedPairs = 0;
+        this.flippedCards = [];
+        this.isBusy = false;
+        this.comboCount = 0;
+        this.lastMatchTime = 0;
+        this.hintsRemaining = 3;
+        this.hintCountEl.textContent = '3';
+
+        this.playerTurnTag.textContent = '2. Oyuncu Oynuyor 👤';
+
+        this.movesText.textContent = '0';
+        this.resetTimer();
+        this.startTimer();
+
+        this.renderCards(levelConfig);
+    }
+
     renderCards(levelConfig) {
         this.cardsGrid.innerHTML = '';
         
-        // Filter images by theme
-        let availablePool = CARD_IMAGES;
-        if (this.selectedTheme === 'cats') {
-            availablePool = CARD_IMAGES.filter(c => c.type === 'cat');
-        } else if (this.selectedTheme === 'dogs') {
-            availablePool = CARD_IMAGES.filter(c => c.type === 'dog');
-        }
-        
-        // Fallback if not enough theme cards
-        if (availablePool.length < levelConfig.pairs) {
-            availablePool = CARD_IMAGES;
-        }
-
-        const selectedImages = availablePool.slice(0, levelConfig.pairs);
-        const cardDeck = [...selectedImages, ...selectedImages];
+        const cardPool = CARD_THEMES[this.selectedTheme] || CARD_THEMES.pets;
+        const selectedCards = cardPool.slice(0, levelConfig.pairs);
+        const cardDeck = [...selectedCards, ...selectedCards];
         
         this.shuffle(cardDeck);
 
@@ -412,16 +465,22 @@ class MemoryGame {
         cardDeck.forEach((cardObj, index) => {
             const cardEl = document.createElement('div');
             cardEl.className = 'card';
-            cardEl.dataset.img = cardObj.src;
-            cardEl.dataset.name = cardObj.name;
+            cardEl.dataset.key = cardObj.name;
             cardEl.dataset.index = index;
+
+            let frontHTML = '';
+            if (cardObj.src) {
+                frontHTML = `<img src="${cardObj.src}" alt="${cardObj.name}" />`;
+            } else {
+                frontHTML = `<div class="card-front-emoji">${cardObj.emoji}</div>`;
+            }
 
             cardEl.innerHTML = `
                 <div class="card-face card-back ${skinClass}">
                     <div class="card-back-pattern">🐾</div>
                 </div>
                 <div class="card-face card-front">
-                    <img src="${cardObj.src}" alt="${cardObj.name}" />
+                    ${frontHTML}
                 </div>
             `;
 
@@ -461,8 +520,7 @@ class MemoryGame {
         this.isBusy = true;
         const [card1, card2] = this.flippedCards;
 
-        if (card1.dataset.img === card2.dataset.img) {
-            // Match found!
+        if (card1.dataset.key === card2.dataset.key) {
             const now = Date.now();
             if (now - this.lastMatchTime < 4500 && this.lastMatchTime !== 0) {
                 this.comboCount++;
@@ -481,19 +539,12 @@ class MemoryGame {
                 this.isBusy = false;
                 this.matchedPairs++;
 
-                if (this.gameMode === '2p') {
-                    if (this.currentPlayer === 1) this.p1Score++;
-                    else this.p2Score++;
-                    this.playerTurnTag.textContent = `Sıra: ${this.currentPlayer}. Oyuncu 👤 (P1: ${this.p1Score} - P2: ${this.p2Score})`;
-                }
-
                 const levelConfig = LEVELS.find(l => l.id === this.currentLevel);
                 if (this.matchedPairs === levelConfig.pairs) {
                     this.handleVictory(levelConfig);
                 }
             }, 300);
         } else {
-            // Mismatch
             this.comboCount = 0;
             setTimeout(() => {
                 window.soundManager.playMismatch();
@@ -501,12 +552,6 @@ class MemoryGame {
                 card2.classList.remove('flipped');
                 this.flippedCards = [];
                 this.isBusy = false;
-
-                // Switch turn in 2P mode
-                if (this.gameMode === '2p') {
-                    this.currentPlayer = this.currentPlayer === 1 ? 2 : 1;
-                    this.playerTurnTag.textContent = `Sıra: ${this.currentPlayer}. Oyuncu 👤 (P1: ${this.p1Score} - P2: ${this.p2Score})`;
-                }
             }, 900);
         }
     }
@@ -526,11 +571,10 @@ class MemoryGame {
         const unmatchedCards = Array.from(this.cardsGrid.querySelectorAll('.card:not(.matched):not(.flipped)'));
         if (unmatchedCards.length < 2) return;
 
-        // Find a matching pair
         let pair1 = null, pair2 = null;
         for (let i = 0; i < unmatchedCards.length; i++) {
             for (let j = i + 1; j < unmatchedCards.length; j++) {
-                if (unmatchedCards[i].dataset.img === unmatchedCards[j].dataset.img) {
+                if (unmatchedCards[i].dataset.key === unmatchedCards[j].dataset.key) {
                     pair1 = unmatchedCards[i];
                     pair2 = unmatchedCards[j];
                     break;
@@ -585,8 +629,45 @@ class MemoryGame {
 
     handleVictory(levelConfig) {
         this.stopTimer();
+
+        // 2 Player Sequential Logic
+        if (this.gameMode === '2p' && this.p2ActiveTurn === 1) {
+            this.p1Moves = this.moves;
+            this.p1TimeSeconds = this.timerSeconds;
+
+            this.p1SummaryStats.textContent = `${this.p1Moves} Hamle - ${this.timerText.textContent} Süre`;
+            this.p2TurnModal.classList.add('active');
+            return;
+        }
+
         window.soundManager.playVictory();
         this.launchConfetti();
+
+        if (this.gameMode === '2p' && this.p2ActiveTurn === 2) {
+            this.p2Moves = this.moves;
+            this.p2TimeSeconds = this.timerSeconds;
+
+            let winnerText = '';
+            if (this.p1Moves < this.p2Moves) {
+                winnerText = '🏆 1. Oyuncu Kazandı!';
+            } else if (this.p2Moves < this.p1Moves) {
+                winnerText = '🏆 2. Oyuncu Kazandı!';
+            } else {
+                if (this.p1TimeSeconds < this.p2TimeSeconds) {
+                    winnerText = '🏆 1. Oyuncu Kazandı (Daha Hızlı)!';
+                } else if (this.p2TimeSeconds < this.p1TimeSeconds) {
+                    winnerText = '🏆 2. Oyuncu Kazandı (Daha Hızlı)!';
+                } else {
+                    winnerText = '🤝 Muhteşem Beraberlik!';
+                }
+            }
+
+            this.victoryTitle.textContent = winnerText;
+            this.victorySubtitle.textContent = `P1: ${this.p1Moves} Hamle (${Math.floor(this.p1TimeSeconds/60)}m${this.p1TimeSeconds%60}s) vs P2: ${this.p2Moves} Hamle (${Math.floor(this.p2TimeSeconds/60)}m${this.p2TimeSeconds%60}s)`;
+        } else {
+            this.victoryTitle.textContent = 'Tebrikler! 🎉';
+            this.victorySubtitle.textContent = 'Bölümü Başarıyla Tamamladın!';
+        }
 
         const earnedStars = this.calculateStars(levelConfig);
         
@@ -601,17 +682,7 @@ class MemoryGame {
             localStorage.setItem('kedi_kopek_stars', JSON.stringify(this.starsData));
         }
 
-        // Render interactive balloons
-        this.renderBalloons();
-
         setTimeout(() => {
-            if (this.gameMode === '2p') {
-                const winnerText = this.p1Score > this.p2Score ? '1. Oyuncu Kazandı! 🏆' : (this.p2Score > this.p1Score ? '2. Oyuncu Kazandı! 🏆' : 'Berabere! 🤝');
-                this.victoryTitle.textContent = winnerText;
-            } else {
-                this.victoryTitle.textContent = 'Tebrikler! 🎉';
-            }
-
             this.vTime.textContent = this.timerText.textContent;
             this.vMoves.textContent = this.moves;
 
@@ -631,27 +702,6 @@ class MemoryGame {
                 this.btnModalNext.textContent = 'Sonraki ➡️';
             }
         }, 500);
-    }
-
-    renderBalloons() {
-        this.balloonsWrapper.innerHTML = '';
-        const balloonEmojis = ['🎈', '🔴', '🟡', '🟢', '🔵', '🟣'];
-        
-        for (let i = 0; i < 5; i++) {
-            const b = document.createElement('span');
-            b.className = 'interactive-balloon';
-            b.textContent = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
-            b.style.animationDelay = `${i * 0.2}s`;
-            
-            b.addEventListener('click', () => {
-                window.soundManager.playPop();
-                b.style.transform = 'scale(1.8)';
-                b.style.opacity = '0';
-                setTimeout(() => b.remove(), 200);
-            });
-            
-            this.balloonsWrapper.appendChild(b);
-        }
     }
 
     hideVictoryModal() {
@@ -744,16 +794,25 @@ class MemoryGame {
     // Sticker Album System
     openAlbumModal() {
         this.albumGrid.innerHTML = '';
-        CARD_IMAGES.forEach((card, i) => {
+        const currentPool = CARD_THEMES[this.selectedTheme] || CARD_THEMES.pets;
+        currentPool.forEach((card, i) => {
             const isUnlocked = i < this.unlockedLevel * 2;
             const el = document.createElement('div');
             el.className = 'album-item';
+
+            let mediaHTML = '';
+            if (card.src) {
+                mediaHTML = `<img src="${card.src}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" />`;
+            } else {
+                mediaHTML = `<span style="font-size:2.5rem;">${card.emoji}</span>`;
+            }
+
             el.innerHTML = `
-                <div class="shop-item-icon" style="height:70px;">
-                    ${isUnlocked ? `<img src="${card.src}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;" />` : '❓'}
+                <div class="shop-item-icon" style="height:60px; display:flex; align-items:center; justify-content:center;">
+                    ${isUnlocked ? mediaHTML : '❓'}
                 </div>
-                <div class="shop-item-name">${isUnlocked ? card.name : 'Kilitli Karakter'}</div>
-                <div style="font-size:0.75rem; color:#747d8c;">${isUnlocked ? card.bio : 'Bölümleri geçerek kilidi aç!'}</div>
+                <div class="shop-item-name">${isUnlocked ? card.name : 'Kilitli Dost'}</div>
+                <div style="font-size:0.75rem; color:#747d8c; margin-top:2px;">${isUnlocked ? card.bio : 'Bölümleri geç ve aç!'}</div>
             `;
             this.albumGrid.appendChild(el);
         });
