@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sevimli Kedi & Köpek Kart Eşleştirme Oyunu 🐱🐶</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐶</text></svg>">
+</head>
+<body>
+
+    <!-- Arka Plan Süzülen Baloncuklar -->
+    <div class="bg-bubbles">
+        <span class="bubble" style="left: 10%; animation-delay: 0s;">🐾</span>
+        <span class="bubble" style="left: 25%; animation-delay: 3s;">🐱</span>
+        <span class="bubble" style="left: 45%; animation-delay: 6s;">🐶</span>
+        <span class="bubble" style="left: 65%; animation-delay: 2s;">⭐</span>
+        <span class="bubble" style="left: 85%; animation-delay: 5s;">🦴</span>
+        <span class="bubble" style="left: 95%; animation-delay: 8s;">🐾</span>
+    </div>
+
+    <!-- Canvas Confetti -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Ana Uygulama Konteynırı -->
+    <div class="app-container">
+
+        <!-- Üst Başlık & Kontroller -->
+        <header class="header">
+            <div class="title-box">
+                <span style="font-size: 2.2rem;">🐱</span>
+                <h1>Pati Hafıza Oyunu</h1>
+                <span style="font-size: 2.2rem;">🐶</span>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-item" title="Toplam Kazanılan Yıldızlar">
+                    <span class="stat-icon">⭐</span>
+                    <span id="total-stars">0</span>
+                </div>
+                <button id="btn-audio" class="btn btn-secondary btn-icon-only" title="Ses Aç/Kapat">
+                    🔊
+                </button>
+            </div>
+        </header>
+
+        <!-- SEVİYE HARİTASI EKRANI (LEVEL MAP) -->
+        <main id="level-map-view" class="level-map-view">
+            <div class="map-header">
+                <h2>Bölüm Seçimi</h2>
+                <p>Kilitleri açmak için bölümleri tamamla ve yıldızları topla!</p>
+            </div>
+
+            <div class="levels-grid" id="levels-container">
+                <!-- Javascript ile Dinamik Oluşturulacak Bölüm Kartları -->
+            </div>
+        </main>
+
+        <!-- OYUN ALANI EKRANI (GAME BOARD) -->
+        <main id="game-view" class="game-view">
+            <div class="game-header">
+                <button id="btn-back-map" class="btn btn-secondary">
+                    <span>⬅️</span> Bölüm Haritası
+                </button>
+
+                <div class="stats-bar">
+                    <div class="stat-item" title="Geçen Süre">
+                        <span class="stat-icon">⏱️</span>
+                        <span id="timer-text">00:00</span>
+                    </div>
+                    <div class="stat-item" title="Hamle Sayısı">
+                        <span class="stat-icon">🎯</span>
+                        <span id="moves-text">0</span>
+                    </div>
+                </div>
+
+                <button id="btn-restart" class="btn btn-primary btn-icon-only" title="Yeniden Başlat">
+                    🔄
+                </button>
+            </div>
+
+            <div class="cards-grid-container">
+                <div id="cards-grid" class="cards-grid">
+                    <!-- Javascript ile Kartlar Dinamik Oluşturulacak -->
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- ZAFER POPUP MODALI -->
+    <div id="victory-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h2 class="modal-title">Tebrikler! 🎉</h2>
+            <p id="victory-subtitle" style="font-size: 1.1rem; color: #636e72;">Bölümü Başarıyla Tamamladın!</p>
+
+            <div class="victory-stars">
+                <span class="star" id="v-star-1">⭐</span>
+                <span class="star" id="v-star-2">⭐</span>
+                <span class="star" id="v-star-3">⭐</span>
+            </div>
+
+            <div class="modal-stats">
+                <p>⏱️ Süre: <strong id="v-time">00:15</strong></p>
+                <p>🎯 Hamle Sayısı: <strong id="v-moves">8</strong></p>
+            </div>
+
+            <div class="modal-actions">
+                <button id="btn-modal-map" class="btn btn-secondary">
+                    🗺️ Harita
+                </button>
+
+                <button id="btn-modal-next" class="btn btn-primary">
+                    Sonraki Bölüm ➡️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="audio.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
