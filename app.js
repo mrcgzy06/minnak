@@ -1,4 +1,4 @@
-// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı (Pixel-Perfect UI/UX)
+// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı (Tam Ekran Fluid UI/UX)
 
 const LEVELS = [
     { id: 1, title: 'Bölüm 1: Minik Patiler', rows: 2, cols: 2, pairs: 2, star3Moves: 5, star2Moves: 8 },
@@ -39,6 +39,7 @@ class MemoryGame {
         this.levelMapView = document.getElementById('level-map-view');
         this.gameView = document.getElementById('game-view');
         this.levelsContainer = document.getElementById('levels-container');
+        this.cardsGridContainer = document.getElementById('cards-grid-container');
         this.cardsGrid = document.getElementById('cards-grid');
         this.currentLevelTitle = document.getElementById('current-level-title');
         
@@ -154,45 +155,52 @@ class MemoryGame {
         this.renderLevelMap();
     }
 
-    getGridConfig(levelConfig) {
+    applyGridConfig(levelConfig) {
+        if (!this.cardsGridContainer || !this.cardsGrid) return;
+
+        const availableWidth = this.cardsGridContainer.clientWidth - 16;
+        const availableHeight = this.cardsGridContainer.clientHeight - 16;
+
+        if (availableWidth <= 0 || availableHeight <= 0) return;
+
         const width = window.innerWidth;
         const totalCards = levelConfig.pairs * 2;
 
-        let cols = levelConfig.cols;
-        let cardSize = 140;
+        let cols, rows;
 
         if (width >= 900) {
-            // Desktop (Wide & Large Cards)
-            if (totalCards === 24) { cols = 6; cardSize = 115; }
-            else if (totalCards === 20) { cols = 5; cardSize = 130; }
-            else if (totalCards === 16) { cols = 4; cardSize = 140; }
-            else if (totalCards === 12) { cols = 4; cardSize = 150; }
-            else if (totalCards === 6)  { cols = 3; cardSize = 165; }
-            else if (totalCards === 4)  { cols = 2; cardSize = 180; }
-        } else if (width >= 650) {
-            // Tablet
-            if (totalCards === 24) { cols = 6; cardSize = 95; }
-            else if (totalCards === 20) { cols = 5; cardSize = 105; }
-            else if (totalCards === 16) { cols = 4; cardSize = 115; }
-            else if (totalCards === 12) { cols = 4; cardSize = 125; }
-            else if (totalCards === 6)  { cols = 3; cardSize = 135; }
-            else if (totalCards === 4)  { cols = 2; cardSize = 150; }
+            // DESKTOP LAYOUT (Wide Landscape)
+            if (totalCards === 24) { cols = 6; rows = 4; }
+            else if (totalCards === 20) { cols = 5; rows = 4; }
+            else if (totalCards === 16) { cols = 4; rows = 4; }
+            else if (totalCards === 12) { cols = 4; rows = 3; }
+            else if (totalCards === 6)  { cols = 3; rows = 2; }
+            else if (totalCards === 4)  { cols = 2; rows = 2; }
         } else {
-            // Mobile (Tall Portrait)
-            if (totalCards === 24) { cols = 4; cardSize = 72; }
-            else if (totalCards === 20) { cols = 4; cardSize = 76; }
-            else if (totalCards === 16) { cols = 4; cardSize = 80; }
-            else if (totalCards === 12) { cols = 3; cardSize = 95; }
-            else if (totalCards === 6)  { cols = 2; cardSize = 120; }
-            else if (totalCards === 4)  { cols = 2; cardSize = 135; }
+            // MOBILE LAYOUT (Tall Portrait)
+            if (totalCards === 24) { cols = 4; rows = 6; }
+            else if (totalCards === 20) { cols = 4; rows = 5; }
+            else if (totalCards === 16) { cols = 4; rows = 4; }
+            else if (totalCards === 12) { cols = 3; rows = 4; }
+            else if (totalCards === 6)  { cols = 2; rows = 3; }
+            else if (totalCards === 4)  { cols = 2; rows = 2; }
         }
 
-        return { cols, cardSize };
-    }
+        const gap = width <= 600 ? 10 : 16;
 
-    applyGridConfig(levelConfig) {
-        const { cols, cardSize } = this.getGridConfig(levelConfig);
+        // Mathematical Optimal Card Size Calculation
+        const maxCardW = (availableWidth - (cols - 1) * gap) / cols;
+        const maxCardH = (availableHeight - (rows - 1) * gap) / rows;
+
+        let cardSize = Math.floor(Math.min(maxCardW, maxCardH));
+
+        // Caps to ensure comfortable scaling
+        const maxCap = width >= 900 ? 240 : 140;
+        const minCap = width <= 600 ? 52 : 75;
+        cardSize = Math.max(minCap, Math.min(cardSize, maxCap));
+
         this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
+        this.cardsGrid.style.gap = `${gap}px`;
 
         const cardEls = this.cardsGrid.querySelectorAll('.card');
         cardEls.forEach(cardEl => {
@@ -228,9 +236,6 @@ class MemoryGame {
     renderCards(levelConfig) {
         this.cardsGrid.innerHTML = '';
         
-        const { cols, cardSize } = this.getGridConfig(levelConfig);
-        this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
-
         // Select required image pairs
         const selectedImages = CARD_IMAGES.slice(0, levelConfig.pairs);
         const cardDeck = [...selectedImages, ...selectedImages];
@@ -241,8 +246,6 @@ class MemoryGame {
         cardDeck.forEach((imgSrc, index) => {
             const cardEl = document.createElement('div');
             cardEl.className = 'card';
-            cardEl.style.width = `${cardSize}px`;
-            cardEl.style.height = `${cardSize}px`;
             cardEl.dataset.img = imgSrc;
             cardEl.dataset.index = index;
 
@@ -257,6 +260,11 @@ class MemoryGame {
 
             cardEl.addEventListener('click', () => this.handleCardClick(cardEl));
             this.cardsGrid.appendChild(cardEl);
+        });
+
+        // Apply dynamic layout calculation after DOM insertion
+        requestAnimationFrame(() => {
+            this.applyGridConfig(levelConfig);
         });
     }
 
