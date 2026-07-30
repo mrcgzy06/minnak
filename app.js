@@ -99,6 +99,8 @@ const SHOP_HATS = [
 const CARD_SKINS = [
     { id: 'default', name: 'Pembe Neşe Paket', class: '', price: 0 },
     { id: 'rainbow', name: 'Gökkuşağı Kutusu', class: 'skin-rainbow', price: 6 },
+    { id: 'jungle', name: 'Vahşi Orman Teması', class: 'skin-jungle', price: 10 },
+    { id: 'ocean', name: 'Okyanus Dalgaları', class: 'skin-ocean', price: 10 },
     { id: 'space', name: 'Uzay Serisi Paket', class: 'skin-space', price: 12 },
     { id: 'gold', name: 'Altın Şampiyon', class: 'skin-gold', price: 18 }
 ];
@@ -776,15 +778,17 @@ class MemoryGame {
 
                 const btn = itemEl.querySelector('button');
                 btn.addEventListener('click', () => {
-                    if (isOwned) {
+                    if (isOwned || totalStars >= skin.price) {
+                        if (!isOwned) this.inventory.skins.push(skin.id);
                         this.inventory.equippedSkin = skin.id;
                         this.saveInventory();
                         this.renderShopItems('skins');
-                    } else if (totalStars >= skin.price) {
-                        this.inventory.skins.push(skin.id);
-                        this.inventory.equippedSkin = skin.id;
-                        this.saveInventory();
-                        this.renderShopItems('skins');
+
+                        // Dynamically update existing card backs on game board
+                        const cardBacks = document.querySelectorAll('.card-back');
+                        cardBacks.forEach(cb => {
+                            cb.className = `card-face card-back ${skin.class}`;
+                        });
                     }
                 });
 

@@ -621,6 +621,8 @@ body {
 .card-back.skin-rainbow { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
 .card-back.skin-space { background: linear-gradient(135deg, #30336b 0%, #130f40 100%); }
 .card-back.skin-gold { background: linear-gradient(135deg, #f9ca24 0%, #f0932b 100%); }
+.card-back.skin-jungle { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+.card-back.skin-ocean { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
 
 .card-back-pattern {
     font-size: clamp(1.4rem, 3.5vw, 2.8rem);
