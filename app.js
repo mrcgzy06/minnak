@@ -1,4 +1,4 @@
-// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı (Mobil & Web Uyumlu)
+// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı (UI/UX Özel Tasarım)
 
 const LEVELS = [
     { id: 1, title: 'Bölüm 1: Minik Patiler', rows: 2, cols: 2, pairs: 2, star3Moves: 5, star2Moves: 8 },
@@ -159,21 +159,22 @@ class MemoryGame {
         const width = window.innerWidth;
         const totalCards = levelConfig.pairs * 2;
 
-        if (width <= 480) {
-            // Mobile layout: max 4 columns to keep cards large and touch-friendly
+        if (width >= 900) {
+            // DESKTOP LAYOUT (Wide Landscape)
+            if (totalCards === 24) return 6; // 6x4
+            if (totalCards === 20) return 5; // 5x4
+            if (totalCards === 16) return 4; // 4x4
+            if (totalCards === 12) return 4; // 4x3
+            if (totalCards === 6) return 3;  // 3x2
+            if (totalCards === 4) return 2;  // 2x2
+        } else {
+            // MOBILE / TABLET LAYOUT (Tall Portrait)
             if (totalCards === 24) return 4; // 4x6
             if (totalCards === 20) return 4; // 4x5
             if (totalCards === 16) return 4; // 4x4
             if (totalCards === 12) return 3; // 3x4
-            if (totalCards === 6) return 3;  // 3x2
+            if (totalCards === 6) return 2;  // 2x3
             if (totalCards === 4) return 2;  // 2x2
-        } else if (width <= 650) {
-            if (totalCards === 24) return 4;
-            if (totalCards === 20) return 4;
-            if (totalCards === 16) return 4;
-            if (totalCards === 12) return 4;
-            if (totalCards === 6) return 3;
-            if (totalCards === 4) return 2;
         }
 
         return levelConfig.cols;
@@ -356,7 +357,7 @@ class MemoryGame {
             if (this.currentLevel === LEVELS.length) {
                 this.btnModalNext.textContent = 'Şampiyon! 🏆';
             } else {
-                this.btnModalNext.textContent = 'Sonraki Bölüm ➡️';
+                this.btnModalNext.textContent = 'Sonraki ➡️';
             }
         }, 500);
     }
