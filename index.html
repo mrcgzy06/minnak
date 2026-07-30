@@ -28,19 +28,16 @@
         <!-- Üst Başlık & Kontroller -->
         <header class="header">
             <div class="title-box">
-                <span style="font-size: 1.8rem;">🐱</span>
+                <span class="title-emoji">🐱</span>
                 <h1>Pati Hafıza Oyunu</h1>
-                <span style="font-size: 1.8rem;">🐶</span>
+                <span class="title-emoji">🐶</span>
             </div>
 
             <div class="header-right">
-                <div class="stats-bar">
-                    <div class="stat-item" title="Toplam Kazanılan Yıldızlar">
-                        <span class="stat-icon">⭐</span>
-                        <span id="total-stars">0</span>
-                    </div>
+                <div class="stats-pill" title="Toplam Kazanılan Yıldızlar">
+                    <span class="stat-icon">⭐</span>
+                    <span id="total-stars">0</span>
                 </div>
-
                 <button id="btn-audio" class="btn btn-secondary btn-icon-only" title="Ses Aç/Kapat">
                     🔊
                 </button>
@@ -62,26 +59,32 @@
         <!-- OYUN ALANI EKRANI (GAME BOARD) -->
         <main id="game-view" class="game-view">
             <div class="game-header">
-                <button id="btn-back-map" class="btn btn-secondary">
-                    <span>⬅️</span> Harita
-                </button>
-
-                <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
-
-                <div class="stats-bar">
-                    <div class="stat-item" title="Geçen Süre">
-                        <span class="stat-icon">⏱️</span>
-                        <span id="timer-text">00:00</span>
-                    </div>
-                    <div class="stat-item" title="Hamle Sayısı">
-                        <span class="stat-icon">🎯</span>
-                        <span id="moves-text">0</span>
-                    </div>
+                <div class="header-left">
+                    <button id="btn-back-map" class="btn btn-secondary">
+                        <span>⬅️</span> Harita
+                    </button>
                 </div>
 
-                <button id="btn-restart" class="btn btn-primary btn-icon-only" title="Yeniden Başlat">
-                    🔄
-                </button>
+                <div class="header-center">
+                    <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
+                </div>
+
+                <div class="header-right">
+                    <div class="stats-pill">
+                        <div class="stat-item" title="Geçen Süre">
+                            <span class="stat-icon">⏱️</span>
+                            <span id="timer-text">00:00</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item" title="Hamle Sayısı">
+                            <span class="stat-icon">🎯</span>
+                            <span id="moves-text">0</span>
+                        </div>
+                    </div>
+                    <button id="btn-restart" class="btn btn-primary btn-icon-only" title="Yeniden Başlat">
+                        🔄
+                    </button>
+                </div>
             </div>
 
             <div class="cards-grid-container">
@@ -97,7 +100,7 @@
     <div id="victory-modal" class="modal-overlay">
         <div class="modal-card">
             <h2 class="modal-title">Tebrikler! 🎉</h2>
-            <p id="victory-subtitle" style="font-size: 1rem; color: #636e72; margin-bottom: 8px;">Bölümü Başarıyla Tamamladın!</p>
+            <p id="victory-subtitle" style="font-size: 1.05rem; color: #747d8c; margin-bottom: 8px;">Bölümü Başarıyla Tamamladın!</p>
 
             <div class="victory-stars">
                 <span class="star" id="v-star-1">⭐</span>

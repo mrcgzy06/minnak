@@ -1,4 +1,4 @@
-// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı (UI/UX Özel Tasarım)
+// Kedi & Köpek Kart Eşleştirme Oyunu - Ana Uygulama Mantığı (Pixel-Perfect UI/UX)
 
 const LEVELS = [
     { id: 1, title: 'Bölüm 1: Minik Patiler', rows: 2, cols: 2, pairs: 2, star3Moves: 5, star2Moves: 8 },
@@ -98,8 +98,7 @@ class MemoryGame {
             if (this.gameView.style.display === 'flex') {
                 const levelConfig = LEVELS.find(l => l.id === this.currentLevel);
                 if (levelConfig) {
-                    const cols = this.getGridColumns(levelConfig);
-                    this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                    this.applyGridConfig(levelConfig);
                 }
             }
         });
@@ -155,29 +154,51 @@ class MemoryGame {
         this.renderLevelMap();
     }
 
-    getGridColumns(levelConfig) {
+    getGridConfig(levelConfig) {
         const width = window.innerWidth;
         const totalCards = levelConfig.pairs * 2;
 
+        let cols = levelConfig.cols;
+        let cardSize = 140;
+
         if (width >= 900) {
-            // DESKTOP LAYOUT (Wide Landscape)
-            if (totalCards === 24) return 6; // 6x4
-            if (totalCards === 20) return 5; // 5x4
-            if (totalCards === 16) return 4; // 4x4
-            if (totalCards === 12) return 4; // 4x3
-            if (totalCards === 6) return 3;  // 3x2
-            if (totalCards === 4) return 2;  // 2x2
+            // Desktop (Wide & Large Cards)
+            if (totalCards === 24) { cols = 6; cardSize = 115; }
+            else if (totalCards === 20) { cols = 5; cardSize = 130; }
+            else if (totalCards === 16) { cols = 4; cardSize = 140; }
+            else if (totalCards === 12) { cols = 4; cardSize = 150; }
+            else if (totalCards === 6)  { cols = 3; cardSize = 165; }
+            else if (totalCards === 4)  { cols = 2; cardSize = 180; }
+        } else if (width >= 650) {
+            // Tablet
+            if (totalCards === 24) { cols = 6; cardSize = 95; }
+            else if (totalCards === 20) { cols = 5; cardSize = 105; }
+            else if (totalCards === 16) { cols = 4; cardSize = 115; }
+            else if (totalCards === 12) { cols = 4; cardSize = 125; }
+            else if (totalCards === 6)  { cols = 3; cardSize = 135; }
+            else if (totalCards === 4)  { cols = 2; cardSize = 150; }
         } else {
-            // MOBILE / TABLET LAYOUT (Tall Portrait)
-            if (totalCards === 24) return 4; // 4x6
-            if (totalCards === 20) return 4; // 4x5
-            if (totalCards === 16) return 4; // 4x4
-            if (totalCards === 12) return 3; // 3x4
-            if (totalCards === 6) return 2;  // 2x3
-            if (totalCards === 4) return 2;  // 2x2
+            // Mobile (Tall Portrait)
+            if (totalCards === 24) { cols = 4; cardSize = 72; }
+            else if (totalCards === 20) { cols = 4; cardSize = 76; }
+            else if (totalCards === 16) { cols = 4; cardSize = 80; }
+            else if (totalCards === 12) { cols = 3; cardSize = 95; }
+            else if (totalCards === 6)  { cols = 2; cardSize = 120; }
+            else if (totalCards === 4)  { cols = 2; cardSize = 135; }
         }
 
-        return levelConfig.cols;
+        return { cols, cardSize };
+    }
+
+    applyGridConfig(levelConfig) {
+        const { cols, cardSize } = this.getGridConfig(levelConfig);
+        this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
+
+        const cardEls = this.cardsGrid.querySelectorAll('.card');
+        cardEls.forEach(cardEl => {
+            cardEl.style.width = `${cardSize}px`;
+            cardEl.style.height = `${cardSize}px`;
+        });
     }
 
     startLevel(levelId) {
@@ -201,15 +222,15 @@ class MemoryGame {
         this.levelMapView.style.display = 'none';
         this.gameView.style.display = 'flex';
 
-        // Setup Grid Columns dynamically
-        const cols = this.getGridColumns(levelConfig);
-        this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
         this.renderCards(levelConfig);
     }
 
     renderCards(levelConfig) {
         this.cardsGrid.innerHTML = '';
         
+        const { cols, cardSize } = this.getGridConfig(levelConfig);
+        this.cardsGrid.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
+
         // Select required image pairs
         const selectedImages = CARD_IMAGES.slice(0, levelConfig.pairs);
         const cardDeck = [...selectedImages, ...selectedImages];
@@ -220,6 +241,8 @@ class MemoryGame {
         cardDeck.forEach((imgSrc, index) => {
             const cardEl = document.createElement('div');
             cardEl.className = 'card';
+            cardEl.style.width = `${cardSize}px`;
+            cardEl.style.height = `${cardSize}px`;
             cardEl.dataset.img = imgSrc;
             cardEl.dataset.index = index;
 
