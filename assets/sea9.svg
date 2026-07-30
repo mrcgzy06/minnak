@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#f3e5f5"/>
+      <stop offset="50%" stop-color="#e1bee7"/>
+      <stop offset="100%" stop-color="#8e24aa"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
+  <!-- Jellyfish Character -->
+  <g filter="url(#shadow)">
+    <!-- Tentacles -->
+    <path d="M 150 180 Q 140 230 160 270" stroke="#ab47bc" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M 180 180 Q 190 230 170 270" stroke="#ab47bc" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M 220 180 Q 210 230 230 270" stroke="#ab47bc" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M 250 180 Q 260 230 240 270" stroke="#ab47bc" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <!-- Umbrella Head -->
+    <path d="M 130 180 C 130 100, 270 100, 270 180 Q 200 195 130 180 Z" fill="#ce93d8" opacity="0.9"/>
+    <!-- Eyes -->
+    <circle cx="175" cy="145" r="8" fill="#4a148c"/>
+    <circle cx="225" cy="145" r="8" fill="#4a148c"/>
+    <circle cx="177" cy="143" r="3" fill="#ffffff"/>
+    <circle cx="227" cy="143" r="3" fill="#ffffff"/>
+    <!-- Cheeks -->
+    <circle cx="155" cy="160" r="7" fill="#ff4081" opacity="0.5"/>
+    <circle cx="245" cy="160" r="7" fill="#ff4081" opacity="0.5"/>
+  </g>
+  <rect x="50" y="320" width="300" height="50" rx="25" fill="#ab47bc" stroke="#ffffff" stroke-width="4" filter="url(#shadow)"/>
+  <text x="200" y="353" font-family="'Fredoka', sans-serif" font-weight="bold" font-size="24" fill="#ffffff" text-anchor="middle">Deniz Anası 🪼</text>
+</svg>

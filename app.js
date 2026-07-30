@@ -59,32 +59,32 @@ const CARD_THEMES = {
         { src: 'assets/card13.jpg', name: 'Kelebek Avcısı', bio: 'Mavi kelebeklerle oynamaya bayılır.' }
     ],
     wild: [
-        { emoji: '🦁', name: 'Kral Aslan', bio: 'Ormanların cesur lideridir.' },
-        { emoji: '🐘', name: 'Sevimli Fil', bio: 'Hortumuyla serin sular püskürtür.' },
-        { emoji: '🦒', name: 'Zarif Zürafa', bio: 'En yüksek yaprakları yer.' },
-        { emoji: 'ZE', emoji: '🦓', name: 'Çizgili Zebra', bio: 'Koşu yarışlarında birincidir.' },
-        { emoji: '🐒', name: 'Neşeli Maymun', bio: 'Ağaçtan ağaca muz toplar.' },
-        { emoji: '🐼', name: 'Tombul Panda', bio: 'Bambu yapraklarını çok sever.' },
-        { emoji: '🐻', name: 'Ayı Bobo', bio: 'En tatlı balları o bulur.' },
-        { emoji: '🐯', name: 'Hızlı Kaplan', bio: 'Turuncu çizgileriyle güçlüdür.' },
-        { emoji: '🐊', name: 'Yeşil Timsah', bio: 'Nehirde güneşlenir.' },
-        { emoji: '🐸', name: 'Zıpzıp Kurbağa', bio: 'Nilüferde zıplar.' },
-        { emoji: '🦜', name: 'Renkli Papağan', bio: 'En güzel şarkıları söyler.' },
-        { emoji: '🐨', name: 'Uykucu Koala', bio: 'Okaliptüs ağacında uyur.' }
+        { src: 'assets/wild1.svg', name: 'Kral Aslan 🦁', bio: 'Ormanların cesur lideridir.' },
+        { src: 'assets/wild2.svg', name: 'Sevimli Fil 🐘', bio: 'Hortumuyla serin sular püskürtür.' },
+        { src: 'assets/wild3.svg', name: 'Zarif Zürafa 🦒', bio: 'En yüksek yaprakları yer.' },
+        { src: 'assets/wild4.svg', name: 'Çizgili Zebra 🦓', bio: 'Koşu yarışlarında birincidir.' },
+        { src: 'assets/wild5.svg', name: 'Neşeli Maymun 🐒', bio: 'Ağaçtan ağaca muz toplar.' },
+        { src: 'assets/wild6.svg', name: 'Tombul Panda 🐼', bio: 'Bambu yapraklarını çok sever.' },
+        { src: 'assets/wild7.svg', name: 'Ayı Bobo 🐻', bio: 'En tatlı balları o bulur.' },
+        { src: 'assets/wild8.svg', name: 'Hızlı Kaplan 🐯', bio: 'Turuncu çizgileriyle güçlüdür.' },
+        { src: 'assets/wild9.svg', name: 'Yeşil Timsah 🐊', bio: 'Nehirde güneşlenir.' },
+        { src: 'assets/wild10.svg', name: 'Zıpzıp Kurbağa 🐸', bio: 'Nilüferde zıplar.' },
+        { src: 'assets/wild11.svg', name: 'Renkli Papağan 🦜', bio: 'En güzel şarkıları söyler.' },
+        { src: 'assets/wild12.svg', name: 'Uykucu Koala 🐨', bio: 'Okaliptüs ağacında uyur.' }
     ],
     sea: [
-        { emoji: '🐬', name: 'Zeki Yunus', bio: 'Denizde taklalar atarak yüzer.' },
-        { emoji: '🐙', name: 'Sevimli Ahtapot', bio: '8 kollu sarılma ustasıdır.' },
-        { emoji: '🦈', name: 'Hızlı Köpekbalığı', bio: 'Denizaltının en hızlısıdır.' },
-        { emoji: '🐳', name: 'Dev Balina', bio: 'Neşeli fıskiyeler yapar.' },
-        { emoji: '🐢', name: 'Bilge Kaplumbağa', bio: 'Denizlerde seyahat eder.' },
-        { emoji: '🦀', name: 'Kırmızı Yengeç', bio: 'Kumsalda yan yan yürür.' },
-        { emoji: '⭐', name: 'Deniz Yıldızı', bio: 'Kumsalı parlatır.' },
-        { emoji: '🐠', name: 'Palyaço Balığı', bio: 'Mercanlarda saklambaç oynar.' },
-        { emoji: '🪼', name: 'Deniz Anası', bio: 'Denizde ışık saçar.' },
-        { emoji: '🦞', name: 'Kırmızı Istakoz', bio: 'Deniz kabukları toplar.' },
-        { emoji: '🦭', name: 'Usta Fok', bio: 'Topu burnunda tutar.' },
-        { emoji: '🦪', name: 'İnci İstiridye', bio: 'Parlak sürprizler saklar.' }
+        { src: 'assets/sea1.svg', name: 'Zeki Yunus 🐬', bio: 'Denizde taklalar atarak yüzer.' },
+        { src: 'assets/sea2.svg', name: 'Sevimli Ahtapot 🐙', bio: '8 kollu sarılma ustasıdır.' },
+        { src: 'assets/sea3.svg', name: 'Hızlı Köpekbalığı 🦈', bio: 'Denizaltının en hızlısıdır.' },
+        { src: 'assets/sea4.svg', name: 'Dev Balina 🐳', bio: 'Neşeli fıskiyeler yapar.' },
+        { src: 'assets/sea5.svg', name: 'Bilge Kaplumbağa 🐢', bio: 'Denizlerde seyahat eder.' },
+        { src: 'assets/sea6.svg', name: 'Kırmızı Yengeç 🦀', bio: 'Kumsalda yan yan yürür.' },
+        { src: 'assets/sea7.svg', name: 'Deniz Yıldızı ⭐', bio: 'Kumsalı parlatır.' },
+        { src: 'assets/sea8.svg', name: 'Palyaço Balığı 🐠', bio: 'Mercanlarda saklambaç oynar.' },
+        { src: 'assets/sea9.svg', name: 'Deniz Anası 🪼', bio: 'Denizde ışık saçar.' },
+        { src: 'assets/sea10.svg', name: 'Kırmızı Istakoz 🦞', bio: 'Deniz kabukları toplar.' },
+        { src: 'assets/sea11.svg', name: 'Usta Fok 🦭', bio: 'Topu burnunda tutar.' },
+        { src: 'assets/sea12.svg', name: 'İnci İstiridye 🦪', bio: 'Parlak sürprizler saklar.' }
     ]
 };
 

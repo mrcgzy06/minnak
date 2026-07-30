@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fff9c4"/>
+      <stop offset="50%" stop-color="#a8e6cf"/>
+      <stop offset="100%" stop-color="#11998e"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
+  <circle cx="200" cy="180" r="140" fill="#ffeaa7" opacity="0.4"/>
+  <!-- Lion Character -->
+  <g filter="url(#shadow)">
+    <!-- Mane -->
+    <path d="M 200 40 C 130 40, 80 90, 80 160 C 80 230, 120 280, 200 280 C 280 280, 320 230, 320 160 C 320 90, 270 40, 200 40 Z" fill="#e67e22"/>
+    <circle cx="150" cy="80" r="30" fill="#d35400"/>
+    <circle cx="250" cy="80" r="30" fill="#d35400"/>
+    <circle cx="110" cy="130" r="30" fill="#d35400"/>
+    <circle cx="290" cy="130" r="30" fill="#d35400"/>
+    <circle cx="110" cy="190" r="30" fill="#d35400"/>
+    <circle cx="290" cy="190" r="30" fill="#d35400"/>
+    <circle cx="150" cy="240" r="30" fill="#d35400"/>
+    <circle cx="250" cy="240" r="30" fill="#d35400"/>
+    <!-- Face -->
+    <ellipse cx="200" cy="165" rx="80" ry="75" fill="#f39c12"/>
+    <!-- Snout -->
+    <ellipse cx="200" cy="185" rx="40" ry="30" fill="#f1c40f"/>
+    <path d="M 185 170 Q 200 160 215 170 Q 200 190 185 170 Z" fill="#e74c3c"/>
+    <!-- Eyes -->
+    <circle cx="170" cy="140" r="14" fill="#2c3e50"/>
+    <circle cx="230" cy="140" r="14" fill="#2c3e50"/>
+    <circle cx="174" cy="136" r="5" fill="#ffffff"/>
+    <circle cx="234" cy="136" r="5" fill="#ffffff"/>
+    <!-- Smile -->
+    <path d="M 185 195 Q 200 210 215 195" stroke="#2c3e50" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <!-- Cheeks -->
+    <circle cx="145" cy="165" r="10" fill="#ff7675" opacity="0.6"/>
+    <circle cx="255" cy="165" r="10" fill="#ff7675" opacity="0.6"/>
+    <!-- Crown -->
+    <polygon points="175,90 187,60 200,80 213,60 225,90" fill="#f1c40f" stroke="#e67e22" stroke-width="3"/>
+  </g>
+  <!-- Card Title Banner -->
+  <rect x="50" y="320" width="300" height="50" rx="25" fill="#ff7675" stroke="#ffffff" stroke-width="4" filter="url(#shadow)"/>
+  <text x="200" y="353" font-family="'Fredoka', sans-serif" font-weight="bold" font-size="24" fill="#ffffff" text-anchor="middle">Kral Aslan 🦁</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#eceff1"/>
+      <stop offset="50%" stop-color="#90a4ae"/>
+      <stop offset="100%" stop-color="#37474f"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
+  <!-- Seal Character -->
+  <g filter="url(#shadow)">
+    <!-- Ball on Nose -->
+    <circle cx="200" cy="70" r="22" fill="#ff7043" stroke="#ffffff" stroke-width="3"/>
+    <!-- Head & Body -->
+    <ellipse cx="200" cy="170" rx="70" ry="60" fill="#78909c"/>
+    <ellipse cx="200" cy="185" rx="45" ry="35" fill="#cfd8dc"/>
+    <!-- Snout -->
+    <ellipse cx="200" cy="150" rx="14" ry="10" fill="#263238"/>
+    <!-- Whiskers -->
+    <line x1="150" y1="160" x2="120" y2="155" stroke="#263238" stroke-width="3"/>
+    <line x1="150" y1="168" x2="120" y2="173" stroke="#263238" stroke-width="3"/>
+    <line x1="250" y1="160" x2="280" y2="155" stroke="#263238" stroke-width="3"/>
+    <line x1="250" y1="168" x2="280" y2="173" stroke="#263238" stroke-width="3"/>
+    <!-- Eyes -->
+    <circle cx="170" cy="130" r="9" fill="#263238"/>
+    <circle cx="230" cy="130" r="9" fill="#263238"/>
+    <circle cx="172" cy="128" r="3" fill="#ffffff"/>
+    <circle cx="232" cy="128" r="3" fill="#ffffff"/>
+  </g>
+  <rect x="50" y="320" width="300" height="50" rx="25" fill="#455a64" stroke="#ffffff" stroke-width="4" filter="url(#shadow)"/>
+  <text x="200" y="353" font-family="'Fredoka', sans-serif" font-weight="bold" font-size="24" fill="#ffffff" text-anchor="middle">Usta Fok 🦭</text>
+</svg>

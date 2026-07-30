@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#e8f5e9"/>
+      <stop offset="50%" stop-color="#66bb6a"/>
+      <stop offset="100%" stop-color="#1b5e20"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" rx="40" fill="url(#bg)"/>
+  <!-- Turtle Character -->
+  <g filter="url(#shadow)">
+    <!-- Flippers -->
+    <ellipse cx="120" cy="120" rx="35" ry="20" transform="rotate(-30 120 120)" fill="#43a047"/>
+    <ellipse cx="280" cy="120" rx="35" ry="20" transform="rotate(30 280 120)" fill="#43a047"/>
+    <ellipse cx="130" cy="220" rx="25" ry="15" transform="rotate(20 130 220)" fill="#43a047"/>
+    <ellipse cx="270" cy="220" rx="25" ry="15" transform="rotate(-20 270 220)" fill="#43a047"/>
+    <!-- Head -->
+    <circle cx="200" cy="100" r="35" fill="#43a047"/>
+    <circle cx="188" cy="92" r="6" fill="#1b5e20"/>
+    <circle cx="212" cy="92" r="6" fill="#1b5e20"/>
+    <circle cx="189" cy="90" r="2" fill="#ffffff"/>
+    <circle cx="213" cy="90" r="2" fill="#ffffff"/>
+    <path d="M 192 110 Q 200 118 208 110" stroke="#1b5e20" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <!-- Shell -->
+    <ellipse cx="200" cy="175" rx="75" ry="60" fill="#2e7d32"/>
+    <polygon points="200,135 225,155 215,185 185,185 175,155" fill="#a5d6a7"/>
+    <polygon points="160,145 170,165 145,185 130,165" fill="#81c784"/>
+    <polygon points="240,145 230,165 255,185 270,165" fill="#81c784"/>
+  </g>
+  <rect x="50" y="320" width="300" height="50" rx="25" fill="#2e7d32" stroke="#ffffff" stroke-width="4" filter="url(#shadow)"/>
+  <text x="200" y="353" font-family="'Fredoka', sans-serif" font-weight="bold" font-size="24" fill="#ffffff" text-anchor="middle">Bilge Kaplumbağa 🐢</text>
+</svg>
