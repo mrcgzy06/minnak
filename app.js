@@ -106,7 +106,7 @@ const CARD_SKINS = [
 class MemoryGame {
     constructor() {
         this.currentLevel = 1;
-        this.unlockedLevel = parseInt(localStorage.getItem('kedi_kopek_unlocked') || '1');
+        this.unlockedLevel = 30; // Tüm 30 bölüm doğrudan açık!
         this.starsData = JSON.parse(localStorage.getItem('kedi_kopek_stars') || '{}');
         this.inventory = JSON.parse(localStorage.getItem('kedi_kopek_inv') || '{"hats":["none"],"skins":["default"],"equippedHat":"none","equippedSkin":"default"}');
 
