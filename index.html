@@ -34,6 +34,12 @@
             </div>
 
             <div class="header-right">
+                <button id="btn-open-album" class="btn btn-secondary" title="Sticker Albümü">
+                    📖 Albüm
+                </button>
+                <button id="btn-open-shop" class="btn btn-accent" title="Pati Mağazası">
+                    🛍️ Mağaza
+                </button>
                 <div class="stats-pill" title="Toplam Kazanılan Yıldızlar">
                     <span class="stat-icon">⭐</span>
                     <span id="total-stars">0</span>
@@ -46,6 +52,41 @@
 
         <!-- SEVİYE HARİTASI EKRANI (LEVEL MAP) -->
         <main id="level-map-view" class="level-map-view">
+            <!-- SANAL PATİ DOSTU BÖLÜMÜ (Virtual Companion Box) -->
+            <div class="virtual-pet-container" id="virtual-pet-container">
+                <div class="pet-speech-bubble" id="pet-speech">
+                    Birlikte oynayalım mı? ⭐ Yıldız topla, bana hediye al!
+                </div>
+                <div class="pet-avatar-wrapper" id="pet-avatar-btn" title="Doğrudan Sevmek İçin Tıkla!">
+                    <span class="pet-hat" id="pet-hat-display">👑</span>
+                    <span class="pet-avatar" id="pet-avatar-emoji">🐱</span>
+                </div>
+                <div class="pet-info">
+                    <div class="pet-name" id="pet-name-display">Pamuk 🐾</div>
+                    <div class="pet-status">Birlikte Neşeliyiz!</div>
+                </div>
+            </div>
+
+            <!-- MOD VE KATEGORİ SEÇİM FİLTRELERİ -->
+            <div class="map-controls-bar">
+                <div class="control-group">
+                    <span class="control-label">👥 Mod:</span>
+                    <div class="pill-selector" id="mode-selector">
+                        <button class="pill-btn active" data-mode="1p">Single 👤</button>
+                        <button class="pill-btn" data-mode="2p">2 Kişilik 👥</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <span class="control-label">🎨 Tema:</span>
+                    <div class="pill-selector" id="theme-selector">
+                        <button class="pill-btn active" data-theme="mixed">Karışık 🐾</button>
+                        <button class="pill-btn" data-theme="cats">Kediler 🐱</button>
+                        <button class="pill-btn" data-theme="dogs">Köpekler 🐶</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="map-header">
                 <h2>Bölüm Seçimi</h2>
                 <p>Bölümleri tamamla, kilitleri aç ve yıldızları topla!</p>
@@ -69,9 +110,15 @@
 
                 <div class="header-center">
                     <div class="current-level-tag" id="current-level-title">Bölüm 1</div>
+                    <div id="player-turn-indicator" class="player-turn-tag" style="display: none;">
+                        Sıra: 1. Oyuncu 👤
+                    </div>
                 </div>
 
                 <div class="header-right">
+                    <button id="btn-hint" class="btn btn-hint" title="İpucu Al">
+                        💡 İpucu (<span id="hint-count">3</span>)
+                    </button>
                     <div class="stats-pill">
                         <div class="stat-item" title="Geçen Süre">
                             <span class="stat-icon">⏱️</span>
@@ -89,6 +136,9 @@
                 </div>
             </div>
 
+            <!-- KOMBO / UÇUŞAN YAZI BANNERİ -->
+            <div id="combo-banner" class="combo-banner"></div>
+
             <div id="cards-grid-container" class="cards-grid-container">
                 <div id="cards-grid" class="cards-grid">
                     <!-- Javascript ile Kartlar Dinamik Oluşturulacak -->
@@ -101,7 +151,7 @@
     <!-- ZAFER POPUP MODALI -->
     <div id="victory-modal" class="modal-overlay">
         <div class="modal-card">
-            <h2 class="modal-title">Tebrikler! 🎉</h2>
+            <h2 class="modal-title" id="victory-title">Tebrikler! 🎉</h2>
             <p id="victory-subtitle" style="font-size: 1.05rem; color: #747d8c; margin-bottom: 8px;">Bölümü Başarıyla Tamamladın!</p>
 
             <div class="victory-stars">
@@ -110,9 +160,15 @@
                 <span class="star" id="v-star-3">⭐</span>
             </div>
 
-            <div class="modal-stats">
+            <div class="modal-stats" id="modal-stats-container">
                 <div>⏱️ Süre: <strong id="v-time">00:15</strong></div>
                 <div>🎯 Hamle: <strong id="v-moves">8</strong></div>
+            </div>
+
+            <!-- INTERAKTİF BALON PATLATMA ALANI -->
+            <div class="balloon-pop-zone" id="balloon-pop-zone">
+                <p style="font-size:0.85rem; color:#747d8c; font-weight:700; margin-bottom:4px;">🎈 Balonlara tıkla ve patlat!</p>
+                <div id="balloons-wrapper" class="balloons-wrapper"></div>
             </div>
 
             <div class="modal-actions">
@@ -123,6 +179,41 @@
                 <button id="btn-modal-next" class="btn btn-primary">
                     Sonraki ➡️
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PATİ MAĞAZASI MODALI (PET SHOP & CARDS SHOP) -->
+    <div id="shop-modal" class="modal-overlay">
+        <div class="modal-card shop-modal-card">
+            <div class="modal-header-row">
+                <h2>🛍️ Pati Mağazası</h2>
+                <button id="btn-close-shop" class="btn-close">✖</button>
+            </div>
+            <p class="modal-subtitle">Topladığın yıldızlarla sevimli aksesuarlar ve kart arkalıkları al!</p>
+
+            <div class="shop-tabs">
+                <button class="shop-tab active" data-tab="hats">👒 Aksesuarlar</button>
+                <button class="shop-tab" data-tab="skins">🃏 Kart Arkalıkları</button>
+            </div>
+
+            <div class="shop-content" id="shop-items-container">
+                <!-- Javascript ile Dinamik Mağaza Ürünleri -->
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKER ALBÜMÜ MODALI (COLLECTION ALBUM) -->
+    <div id="album-modal" class="modal-overlay">
+        <div class="modal-card album-modal-card">
+            <div class="modal-header-row">
+                <h2>📖 Pati Koleksiyon Albümü</h2>
+                <button id="btn-close-album" class="btn-close">✖</button>
+            </div>
+            <p class="modal-subtitle">Tamamladığın bölümlerle karakter kartvizitlerinin kilidini aç!</p>
+
+            <div class="album-grid" id="album-grid">
+                <!-- Javascript ile Çıkartmalar -->
             </div>
         </div>
     </div>
